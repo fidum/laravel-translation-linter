@@ -105,7 +105,7 @@ return [
         |
         | The following array lists the "filters" that will be used to filter out
         | erroneously detected unused translations. For example, you may want to
-        | ignore laravel or vendor translations.
+        | ignore default laravel or vendor translations.
         |
         | All filters must implement the filter interface or they will be skipped:
         | \Fidum\LaravelTranslationLinter\Contracts\Filter
