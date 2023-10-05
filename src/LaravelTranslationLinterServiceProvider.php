@@ -2,9 +2,9 @@
 
 namespace Fidum\LaravelTranslationLinter;
 
+use Fidum\LaravelTranslationLinter\Commands\LaravelTranslationLinterCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Fidum\LaravelTranslationLinter\Commands\LaravelTranslationLinterCommand;
 
 class LaravelTranslationLinterServiceProvider extends PackageServiceProvider
 {

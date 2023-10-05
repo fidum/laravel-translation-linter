@@ -2,9 +2,9 @@
 
 namespace Fidum\LaravelTranslationLinter\Tests;
 
+use Fidum\LaravelTranslationLinter\LaravelTranslationLinterServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Fidum\LaravelTranslationLinter\LaravelTranslationLinterServiceProvider;
 
 class TestCase extends Orchestra
 {
