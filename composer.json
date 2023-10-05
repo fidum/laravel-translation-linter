@@ -34,8 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Fidum\\LaravelTranslationLinter\\": "src/",
-            "Fidum\\LaravelTranslationLinter\\Database\\Factories\\": "database/factories/"
+            "Fidum\\LaravelTranslationLinter\\": "src/"
         }
     },
     "autoload-dev": {
@@ -45,22 +44,14 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": "@composer run prepare",
-        "clear": "@php vendor/bin/testbench package:purge-laravel-translation-linter --ansi",
-        "prepare": "@php vendor/bin/testbench package:discover --ansi",
-        "build": [
-            "@composer run prepare",
-            "@php vendor/bin/testbench workbench:build --ansi"
-        ],
-        "start": [
-            "Composer\\Config::disableProcessTimeout",
-            "@composer run build",
-            "@php vendor/bin/testbench serve"
-        ],
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ]
     },
     "config": {
         "sort-packages": true,

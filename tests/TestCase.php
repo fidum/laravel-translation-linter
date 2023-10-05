@@ -3,34 +3,23 @@
 namespace Fidum\LaravelTranslationLinter\Tests;
 
 use Fidum\LaravelTranslationLinter\LaravelTranslationLinterServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Workbench\App\Providers\WorkbenchServiceProvider;
+
+use function Orchestra\Testbench\workbench_path;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Fidum\\LaravelTranslationLinter\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
             LaravelTranslationLinterServiceProvider::class,
+            WorkbenchServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-translation-linter_table.php.stub';
-        $migration->up();
-        */
+        $app->setBasePath(workbench_path());
     }
 }

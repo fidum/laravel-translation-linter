@@ -2,24 +2,14 @@
 
 namespace Workbench\App\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+
+use function Orchestra\Testbench\workbench_path;
 
 class WorkbenchServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
-    /**
-     * Bootstrap services.
-     */
     public function boot(): void
     {
-        Route::view('/', 'welcome');
+        $this->loadTranslationsFrom(workbench_path('/vendor/example/lang'), 'example');
     }
 }
