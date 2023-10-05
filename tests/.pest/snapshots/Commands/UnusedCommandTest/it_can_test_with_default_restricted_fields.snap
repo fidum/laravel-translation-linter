@@ -1,4 +1,11 @@
 6 unused translations found
-+-----------+-----+
-| Namespace | Key |
-+-----------+-----+
++-----------+------------------------------------+
+| Namespace | Key                                |
++-----------+------------------------------------+
+|           | example.unused                     |
+|           | example.blade.choice.unused        |
+|           | example.blade.lang.unused          |
+|           | folder/example.unused              |
+|           | folder/example.blade.choice.unused |
+|           | folder/example.blade.lang.unused   |
++-----------+------------------------------------+

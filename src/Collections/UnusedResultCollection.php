@@ -21,6 +21,8 @@ class UnusedResultCollection extends Collection implements UnusedResultCollectio
 
     public function toCommandTableOutputArray(UnusedFieldCollectionContract $fields): array
     {
-        return Arr::only($this->items, $fields->enabled()->toArray());
+        $only = $fields->enabled()->toArray();
+
+        return $this->map(fn (array $data) => Arr::only($data, $only))->toArray();
     }
 }
