@@ -7,7 +7,7 @@ use Illuminate\Support\Enumerable;
 
 interface UnusedFieldCollection extends Arrayable, Enumerable
 {
-    public function enabled(): static;
+    public function enabled(): self;
 
     public function headers(): array;
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class UnusedFieldCollection extends Collection implements UnusedFieldCollectionContract
 {
-    public function enabled(): static
+    public function enabled(): self
     {
         return $this->filter()->keys();
     }

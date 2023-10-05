@@ -66,7 +66,7 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
         return new Collection($unusedStrings);
     }
 
-    public function withLanguages(array $languages): static
+    public function withLanguages(array $languages): self
     {
         $this->languages = $languages;
 
