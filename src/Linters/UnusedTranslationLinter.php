@@ -16,9 +16,9 @@ use Symfony\Component\Finder\SplFileInfo;
 class UnusedTranslationLinter implements UnusedTranslationLinterContract
 {
     public function __construct(
+        protected Extractor $extractor,
         protected LanguageFileFinder $finder,
         protected LanguageNamespaceFinder $namespaces,
-        protected Extractor $extractor,
         protected array $languages = ['en'],
     ) {
     }
@@ -66,19 +66,11 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
         return new Collection($unusedStrings);
     }
 
-    protected function getTranslationsFromFile(SplFileInfo $file): array
+    public function withLanguages(array $languages): static
     {
-        $translations = include $file->getPathname();
+        $this->languages = $languages;
 
-        if ($file->getExtension() === 'json') {
-            $translations = json_decode($translations, true);
-        }
-
-        if (! is_array($translations)) {
-            throw new InvalidArgumentException("Unable to extract an array from {$file->getPathname()}!");
-        }
-
-        return $translations;
+        return $this;
     }
 
     protected function getLanguageKey(SplFileInfo $file, string $language, string $key): string
@@ -94,5 +86,20 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
             ->append('.')
             ->append($key)
             ->toString();
+    }
+
+    protected function getTranslationsFromFile(SplFileInfo $file): array
+    {
+        $translations = include $file->getPathname();
+
+        if ($file->getExtension() === 'json') {
+            $translations = json_decode($translations, true);
+        }
+
+        if (! is_array($translations)) {
+            throw new InvalidArgumentException("Unable to extract an array from {$file->getPathname()}!");
+        }
+
+        return $translations;
     }
 }

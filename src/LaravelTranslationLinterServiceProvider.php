@@ -66,7 +66,12 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         });
 
         $this->app->bind(UnusedResultCollectionContract::class, UnusedResultCollection::class);
-        $this->app->bind(UnusedTranslationLinterContract::class, UnusedTranslationLinter::class);
+        $this->app->bind(UnusedTranslationLinterContract::class, function (Application $app) {
+            $linter = $app->make(UnusedTranslationLinter::class);
+            $languages = $app->make('config')->get('translation-linter.lang.locales');
+
+            return $linter->withLanguages($languages);
+        });
     }
 
     public function provides()

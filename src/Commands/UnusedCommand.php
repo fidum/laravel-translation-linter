@@ -5,7 +5,7 @@ namespace Fidum\LaravelTranslationLinter\Commands;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedResultCollection;
-use Fidum\LaravelTranslationLinter\Linters\UnusedTranslationLinter;
+use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter;
 use Illuminate\Console\Command;
 
 class UnusedCommand extends Command
