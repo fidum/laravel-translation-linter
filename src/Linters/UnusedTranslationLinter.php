@@ -20,7 +20,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         protected LanguageFileFinder $files,
         protected LanguageFileReader $translations,
         protected LanguageNamespaceFinder $namespaces,
-        protected array $languages,
+        protected array $locales,
     ) {}
 
     public function execute(): Collection
@@ -29,11 +29,11 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         $used = $this->used->execute();
         $namespaces = $this->namespaces->execute();
 
-        foreach ($this->languages as $language) {
-            $unused[$language] = [];
+        foreach ($this->locales as $locale) {
+            $unused[$locale] = [];
 
             foreach ($namespaces as $namespace => $path) {
-                $unused[$language][$namespace] = [];
+                $unused[$locale][$namespace] = [];
 
                 // TODO: Support json files
                 $files = $this->files->execute($path, ['php']);
@@ -43,7 +43,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                     $translations = $this->translations->execute($file);
 
                     foreach ($translations as $field => $children) {
-                        $group = $this->getLanguageKey($file, $language, $field);
+                        $group = $this->getLanguageKey($file, $locale, $field);
 
                         foreach (Arr::dot(Arr::wrap($children)) as $key => $value) {
                             $groupedKey = Str::of($group)
@@ -56,7 +56,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                                 ->toString();
 
                             if ($used->doesntContain($namespacedKey)) {
-                                $unused[$language][$namespace][$groupedKey] = $value;
+                                $unused[$locale][$namespace][$groupedKey] = $value;
                             }
                         }
                     }

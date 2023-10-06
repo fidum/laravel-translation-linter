@@ -20,11 +20,11 @@ class UnusedCommand extends Command
         UnusedResultCollection $results,
         UnusedTranslationLinter $linter,
     ): int {
-        foreach ($linter->execute() as $lang => $namespaces) {
+        foreach ($linter->execute() as $locale => $namespaces) {
             foreach ($namespaces as $namespace => $translations) {
                 foreach ($translations as $key => $value) {
-                    if ($filters->shouldReport($lang, $namespace, $key, $value)) {
-                        $results->addUnusedLanguageKey($lang, $namespace, $key, $value);
+                    if ($filters->shouldReport($locale, $namespace, $key, $value)) {
+                        $results->addUnusedLanguageKey($locale, $namespace, $key, $value);
                     }
                 }
             }

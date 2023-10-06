@@ -71,7 +71,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         $this->app->bind(UnusedResultCollectionContract::class, UnusedResultCollection::class);
         $this->app->bind(UnusedTranslationLinterContract::class, UnusedTranslationLinter::class);
         $this->app->when(UnusedTranslationLinter::class)
-            ->needs('$languages')
+            ->needs('$locales')
             ->giveConfig('translation-linter.lang.locales');
     }
 
