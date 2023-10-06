@@ -36,7 +36,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                 $unused[$locale][$namespace] = [];
 
                 // TODO: Support json files
-                $files = $this->files->execute($path, ['php']);
+                $files = $this->files->execute($path, ['php', 'json']);
 
                 /** @var SplFileInfo $file */
                 foreach ($files as $file) {

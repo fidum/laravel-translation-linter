@@ -1,7 +1,10 @@
-8 unused translations found
+11 unused translations found
 +--------+-----------+------------------------------------+------------------------------+
 | Locale | Namespace | Key                                | Value                        |
 +--------+-----------+------------------------------------+------------------------------+
+| en     |           | Unused PHP Class                   | I am unused in php class     |
+| en     |           | Unused Blade File                  | I am unused in blade         |
+| en     |           | Unused Vue Component               | I am unused in vue component |
 | en     |           | example.unused                     | I am unused in php class     |
 | en     |           | example.blade.choice.unused        | I am unused in blade         |
 | en     |           | example.blade.lang.unused          | I am unused in blade         |

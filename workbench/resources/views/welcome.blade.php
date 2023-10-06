@@ -8,6 +8,8 @@
     'example::folder/example.blade.lang.used'
 )
 
+{{ __('Used Blade File') }}
+
 @if(true)
     @choice('example.blade.choice.used', 1)
     @choice('folder/example.blade.choice.used', 1)

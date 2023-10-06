@@ -11,4 +11,8 @@ const exampleA = computed(() => __('example::example.vue.used'))
 const exampleB = computed(() => __(
     'example::folder/example.vue.used'
 ))
+const exampleC = computed(() => __(
+    'Used Vue Component',
+    {foo: 'bar'},
+))
 </script>

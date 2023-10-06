@@ -1,0 +1,8 @@
+{
+    "Used PHP Class": "I am used in php class",
+    "Unused PHP Class": "I am unused in php class",
+    "Used Blade File": "I am used in blade",
+    "Unused Blade File": "I am unused in blade",
+    "Used Vue Component": "I am used in vue component",
+    "Unused Vue Component": "I am unused in vue component"
+}

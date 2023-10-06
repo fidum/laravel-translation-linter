@@ -21,7 +21,7 @@ it('can test with default no filters', function () {
 });
 
 it('can test with default restricted fields', function () {
-    config()->set('translation-linter.unused.fields.locale', false);
+    config()->set('translation-linter.unused.fields.namespace', false);
     config()->set('translation-linter.unused.fields.value', false);
 
     withoutMockingConsoleOutput();

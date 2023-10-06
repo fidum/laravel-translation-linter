@@ -10,11 +10,10 @@ class LanguageFileReader implements LanguageFileReaderContract
 {
     public function execute(SplFileInfo $file): array
     {
-        $translations = include $file->getPathname();
-
-        if ($file->getExtension() === 'json') {
-            $translations = json_decode($translations, true);
-        }
+        $translations = match ($file->getExtension()) {
+            'json' => json_decode($file->getContents(), true),
+            default => include $file->getPathname(),
+        };
 
         if (! is_array($translations)) {
             throw new InvalidArgumentException("Unable to extract an array from {$file->getPathname()}!");

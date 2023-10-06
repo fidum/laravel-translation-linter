@@ -1,13 +1,16 @@
-8 unused translations found
-+-----------+------------------------------------+
-| Namespace | Key                                |
-+-----------+------------------------------------+
-|           | example.unused                     |
-|           | example.blade.choice.unused        |
-|           | example.blade.lang.unused          |
-|           | example.vue.unused                 |
-|           | folder/example.unused              |
-|           | folder/example.blade.choice.unused |
-|           | folder/example.blade.lang.unused   |
-|           | folder/example.vue.unused          |
-+-----------+------------------------------------+
+11 unused translations found
++--------+------------------------------------+
+| Locale | Key                                |
++--------+------------------------------------+
+| en     | Unused PHP Class                   |
+| en     | Unused Blade File                  |
+| en     | Unused Vue Component               |
+| en     | example.unused                     |
+| en     | example.blade.choice.unused        |
+| en     | example.blade.lang.unused          |
+| en     | example.vue.unused                 |
+| en     | folder/example.unused              |
+| en     | folder/example.blade.choice.unused |
+| en     | folder/example.blade.lang.unused   |
+| en     | folder/example.vue.unused          |
++--------+------------------------------------+
