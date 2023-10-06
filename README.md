@@ -10,21 +10,6 @@ This package provides commands to help you keep your translations organized.
 Shoutout to Hexadog for their package [laravel-translation-manager](https://github.com/hexadog/laravel-translation-manager) 
 which was used as the foundation for this package. 
 
-Here is the feature list / roadmap for this package:
-
-- [x] Supports JSON and PHP translation files
-  - You can enable / disable file types in the config
-  - You can add your own custom file readers 
-- [x] Supports multiple locales
-- [x] Supports parsing many code types 
-  - Default: php, js and vue
-  - You can add more file extensions in the config
-- [x] [Unused Command](#unused-command)
-- [ ] Missing Command - _coming soon_
-- [ ] Orphaned Command - _coming soon_
-- [ ] Lint Command - _coming soon_
-  - This would run all of the other commands in a single command.
-
 ## Installation
 
 You can install the package via composer:
@@ -66,6 +51,20 @@ $ php artisan translation:unused
 | de     | example.unused       | Ich werde in einer PHP-Klasse nicht verwendet |
 +--------+----------------------+-----------------------------------------------+
 ```
+
+## Roadmap
+- [x] Supports JSON and PHP translation files
+    - You can enable / disable file types in the config
+    - You can add your own custom file readers
+- [x] Supports multiple locales
+- [x] Supports parsing many code types
+    - Default: php, js and vue
+    - You can add more file extensions in the config
+- [x] [Unused Command](#unused-command)
+- [ ] Missing Command - _coming soon_
+- [ ] Orphaned Command - _coming soon_
+- [ ] Lint Command - _coming soon_
+    - This would run all of the other commands in a single command.
 
 ## Testing
 
