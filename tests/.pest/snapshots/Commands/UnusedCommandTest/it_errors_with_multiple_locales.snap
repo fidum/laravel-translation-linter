@@ -1,0 +1,29 @@
+
+   ERROR  22 unused translations found.  
+
++--------+-----------+------------------------------------+----------------------------------------------------+
+| Locale | Namespace | Key                                | Value                                              |
++--------+-----------+------------------------------------+----------------------------------------------------+
+| en     |           | Unused PHP Class                   | I am unused in php class                           |
+| en     |           | Unused Blade File                  | I am unused in blade                               |
+| en     |           | Unused Vue Component               | I am unused in vue component                       |
+| en     |           | example.unused                     | I am unused in php class                           |
+| en     |           | example.blade.choice.unused        | I am unused in blade                               |
+| en     |           | example.blade.lang.unused          | I am unused in blade                               |
+| en     |           | example.vue.unused                 | I am unused in vue component                       |
+| en     |           | folder/example.unused              | I am unused in php class                           |
+| en     |           | folder/example.blade.choice.unused | I am unused in blade                               |
+| en     |           | folder/example.blade.lang.unused   | I am unused in blade                               |
+| en     |           | folder/example.vue.unused          | I am unused in vue component                       |
+| de     |           | Unused PHP Class                   | Ich werde in einer PHP-Klasse nicht verwendet      |
+| de     |           | Unused Blade File                  | Ich werde in Blade nicht verwendet                 |
+| de     |           | Unused Vue Component               | Ich werde in einem Vue-Komponenten nicht verwendet |
+| de     |           | example.unused                     | Ich werde in einer PHP-Klasse nicht verwendet      |
+| de     |           | example.blade.choice.unused        | Ich werde in Blade nicht verwendet                 |
+| de     |           | example.blade.lang.unused          | Ich werde in Blade nicht verwendet                 |
+| de     |           | example.vue.unused                 | Ich werde in einem Vue-Komponenten nicht verwendet |
+| de     |           | folder/example.unused              | Ich werde in einer PHP-Klasse nicht verwendet      |
+| de     |           | folder/example.blade.choice.unused | Ich werde in Blade nicht verwendet                 |
+| de     |           | folder/example.blade.lang.unused   | Ich werde in Blade nicht verwendet                 |
+| de     |           | folder/example.vue.unused          | Ich werde in einem Vue-Komponenten nicht verwendet |
++--------+-----------+------------------------------------+----------------------------------------------------+

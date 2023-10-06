@@ -35,7 +35,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
             foreach ($namespaces as $namespace => $path) {
                 $unused[$locale][$namespace] = [];
 
-                $files = $this->files->execute($path, ['php', 'json']);
+                $files = $this->files->execute($path, $locale);
 
                 /** @var SplFileInfo $file */
                 foreach ($files as $file) {
@@ -73,8 +73,8 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         }
 
         return Str::of($file->getPath())
-            ->finish('/')
-            ->after("/$language/")
+            ->finish(DIRECTORY_SEPARATOR)
+            ->after(DIRECTORY_SEPARATOR.$language.DIRECTORY_SEPARATOR)
             ->append($file->getFilenameWithoutExtension())
             ->append('.')
             ->append($key)

@@ -1,0 +1,8 @@
+{
+    "Used PHP Class": "Ich werde in einer PHP-Klasse verwendet",
+    "Unused PHP Class": "Ich werde in einer PHP-Klasse nicht verwendet",
+    "Used Blade File": "Ich werde in Blade verwendet",
+    "Unused Blade File": "Ich werde in Blade nicht verwendet",
+    "Used Vue Component": "Ich werde in einem Vue-Komponenten verwendet",
+    "Unused Vue Component": "Ich werde in einem Vue-Komponenten nicht verwendet"
+}

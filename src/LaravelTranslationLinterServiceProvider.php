@@ -20,6 +20,7 @@ use Fidum\LaravelTranslationLinter\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
 use Fidum\LaravelTranslationLinter\Linters\UnusedTranslationLinter;
+use Fidum\LaravelTranslationLinter\Managers\LanguageFileReaderManager;
 use Fidum\LaravelTranslationLinter\Parsers\ApplicationFileParser;
 use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
 use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
@@ -62,6 +63,11 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->bind(LanguageFileReaderContract::class, LanguageFileReader::class);
 
+        $this->app->scoped(LanguageFileReaderManager::class, LanguageFileReaderManager::class);
+        $this->app->when(LanguageFileReaderManager::class)
+            ->needs('$driverConfig')
+            ->giveConfig('translation-linter.lang.readers');
+
         $this->app->bind(LanguageNamespaceFinderContract::class, LanguageNamespaceFinder::class);
 
         $this->app->bind(UnusedFieldCollectionContract::class, function (Application $app) {
@@ -89,6 +95,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             ApplicationFileReaderContract::class,
             LanguageFileFinderContract::class,
             LanguageFileReaderContract::class,
+            LanguageFileReaderManager::class,
             LanguageNamespaceFinderContract::class,
             UnusedFieldCollectionContract::class,
             UnusedFilterCollectionContract::class,

@@ -1,15 +1,9 @@
-19 unused translations found
+
+   ERROR  11 unused translations found.  
+
 +--------+-----------+------------------------------------+------------------------------+
 | Locale | Namespace | Key                                | Value                        |
 +--------+-----------+------------------------------------+------------------------------+
-| en     | example   | example.unused                     | I am unused in php class     |
-| en     | example   | example.blade.choice.unused        | I am unused in blade         |
-| en     | example   | example.blade.lang.unused          | I am unused in blade         |
-| en     | example   | example.vue.unused                 | I am unused in vue component |
-| en     | example   | folder/example.unused              | I am unused in php class     |
-| en     | example   | folder/example.blade.choice.unused | I am unused in blade         |
-| en     | example   | folder/example.blade.lang.unused   | I am unused in blade         |
-| en     | example   | folder/example.vue.unused          | I am unused in vue component |
 | en     |           | Unused PHP Class                   | I am unused in php class     |
 | en     |           | Unused Blade File                  | I am unused in blade         |
 | en     |           | Unused Vue Component               | I am unused in vue component |

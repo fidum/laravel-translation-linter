@@ -31,12 +31,12 @@ class UnusedCommand extends Command
         }
 
         if ($results->isEmpty()) {
-            $this->comment('No unused translations found!');
+            $this->components->info('No unused translations found!');
 
             return self::SUCCESS;
         }
 
-        $this->error(sprintf('%d unused translations found', $results->count()));
+        $this->components->error(sprintf('%d unused translations found', $results->count()));
         $this->table($fields->headers(), $results->toCommandTableOutputArray($fields));
 
         return self::FAILURE;

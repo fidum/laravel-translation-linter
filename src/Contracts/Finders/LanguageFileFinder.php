@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface LanguageFileFinder
 {
-    public function execute(string $path, array $extensions): Collection;
+    public function execute(string $path, string $locale): Collection;
 }

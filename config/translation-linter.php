@@ -4,7 +4,7 @@ return [
     'application' => [
         /*
         |--------------------------------------------------------------------------
-        | Code Directories
+        | Application Directories
         |--------------------------------------------------------------------------
         |
         | The following array lists the "directories" that will be scanned
@@ -19,7 +19,7 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Code Extensions
+        | Application File Extensions
         |--------------------------------------------------------------------------
         |
         | The following array lists the file "extensions" that will be scanned for
@@ -66,6 +66,25 @@ return [
         |
         */
         'locales' => [env('LOCALE_DEFAULT', 'en')],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Language File Readers
+        |--------------------------------------------------------------------------
+        |
+        | The following array lists the language file "readers" that will be
+        | parsed for translation keys. This should be mapped as a key value
+        | array. The key should be the "extension" and the value should be
+        | the "Reader" class that implements the require interface.
+        |
+        | If you want to disable reading a specific file type then you can
+        | remove it from the array below.
+        |
+        */
+        'readers' => [
+            'json' => \Fidum\LaravelTranslationLinter\Readers\JsonFileReader::class,
+            'php' => \Fidum\LaravelTranslationLinter\Readers\PhpFileReader::class,
+        ],
     ],
 
     'unused' => [
