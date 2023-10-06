@@ -51,13 +51,17 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             ->giveConfig('translation-linter.application.extensions');
 
         $this->app->bind(ApplicationFileParserContract::class, ApplicationFileParser::class);
+
         $this->app->when(ApplicationFileParser::class)
             ->needs('$functions')
             ->giveConfig('translation-linter.lang.functions');
 
         $this->app->bind(ApplicationFileReaderContract::class, ApplicationFileReader::class);
+
         $this->app->bind(LanguageFileFinderContract::class, LanguageFileFinder::class);
+
         $this->app->bind(LanguageFileReaderContract::class, LanguageFileReader::class);
+
         $this->app->bind(LanguageNamespaceFinderContract::class, LanguageNamespaceFinder::class);
 
         $this->app->bind(UnusedFieldCollectionContract::class, function (Application $app) {
@@ -69,7 +73,9 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         });
 
         $this->app->bind(UnusedResultCollectionContract::class, UnusedResultCollection::class);
+
         $this->app->bind(UnusedTranslationLinterContract::class, UnusedTranslationLinter::class);
+
         $this->app->when(UnusedTranslationLinter::class)
             ->needs('$locales')
             ->giveConfig('translation-linter.lang.locales');
