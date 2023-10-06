@@ -122,7 +122,7 @@ return [
         */
         'filters' => [
             \Fidum\LaravelTranslationLinter\Filters\DefaultLanguageFilesFilter::class,
-            \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
+            // \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
         ],
     ],
 ];
