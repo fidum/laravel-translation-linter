@@ -21,9 +21,9 @@ Here is the feature list / roadmap for this package:
   - Default: php, js and vue
   - You can add more file extensions in the config
 - [x] [Unused Command](#unused-command)
-- [ ] Missing Command
-- [ ] Orphaned Command
-- [ ] Lint Command
+- [ ] Missing Command - _coming soon_
+- [ ] Orphaned Command - _coming soon_
+- [ ] Lint Command - _coming soon_
   - This would run all of the other commands in a single command.
 
 ## Installation
