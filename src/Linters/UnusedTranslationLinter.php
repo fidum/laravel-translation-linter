@@ -2,13 +2,14 @@
 
 namespace Fidum\LaravelTranslationLinter\Linters;
 
+use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
+use Fidum\LaravelTranslationLinter\Data\ResultObject;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
 use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
 use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Symfony\Component\Finder\SplFileInfo;
@@ -20,21 +21,18 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         protected LanguageFileFinder $files,
         protected LanguageFileReader $translations,
         protected LanguageNamespaceFinder $namespaces,
+        protected ResultObjectCollection $results,
         protected array $locales,
     ) {}
 
-    public function execute(): Collection
+    public function execute(): ResultObjectCollection
     {
-        $unused = [];
+        $this->results->reset();
         $used = $this->used->execute();
         $namespaces = $this->namespaces->execute();
 
         foreach ($this->locales as $locale) {
-            $unused[$locale] = [];
-
             foreach ($namespaces as $namespace => $path) {
-                $unused[$locale][$namespace] = [];
-
                 $files = $this->files->execute($path, $locale);
 
                 /** @var SplFileInfo $file */
@@ -55,7 +53,14 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                                 ->toString();
 
                             if ($used->doesntContain($namespacedKey)) {
-                                $unused[$locale][$namespace][$groupedKey] = $value;
+                                $this->results->push(new ResultObject(
+                                    file: $file,
+                                    key: $groupedKey,
+                                    locale: $locale,
+                                    namespaceHint: $namespace ?: null,
+                                    namespaceHintedKey: $namespacedKey,
+                                    value: $value
+                                ));
                             }
                         }
                     }
@@ -63,7 +68,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
             }
         }
 
-        return new Collection($unused);
+        return $this->results;
     }
 
     protected function getLanguageKey(SplFileInfo $file, string $language, string $key): string

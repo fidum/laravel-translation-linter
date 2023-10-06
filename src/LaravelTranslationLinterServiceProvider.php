@@ -2,13 +2,13 @@
 
 namespace Fidum\LaravelTranslationLinter;
 
+use Fidum\LaravelTranslationLinter\Collections\ResultObjectCollection;
 use Fidum\LaravelTranslationLinter\Collections\UnusedFieldCollection;
 use Fidum\LaravelTranslationLinter\Collections\UnusedFilterCollection;
-use Fidum\LaravelTranslationLinter\Collections\UnusedResultCollection;
 use Fidum\LaravelTranslationLinter\Commands\UnusedCommand;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection as ResultObjectCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection as UnusedFieldCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection as UnusedFilterCollectionContract;
-use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedResultCollection as UnusedResultCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder as ApplicationFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder as LanguageFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder as LanguageNamespaceFinderContract;
@@ -70,6 +70,8 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->bind(LanguageNamespaceFinderContract::class, LanguageNamespaceFinder::class);
 
+        $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
+
         $this->app->bind(UnusedFieldCollectionContract::class, function (Application $app) {
             return UnusedFieldCollection::wrap($app->make('config')->get('translation-linter.unused.fields'));
         });
@@ -77,8 +79,6 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         $this->app->bind(UnusedFilterCollectionContract::class, function (Application $app) {
             return UnusedFilterCollection::wrap($app->make('config')->get('translation-linter.unused.filters'));
         });
-
-        $this->app->bind(UnusedResultCollectionContract::class, UnusedResultCollection::class);
 
         $this->app->bind(UnusedTranslationLinterContract::class, UnusedTranslationLinter::class);
 
@@ -97,9 +97,9 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             LanguageFileReaderContract::class,
             LanguageFileReaderManager::class,
             LanguageNamespaceFinderContract::class,
+            ResultObjectCollectionContract::class,
             UnusedFieldCollectionContract::class,
             UnusedFilterCollectionContract::class,
-            UnusedResultCollectionContract::class,
             UnusedTranslationLinterContract::class,
         ];
     }

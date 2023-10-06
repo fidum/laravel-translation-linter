@@ -100,7 +100,7 @@ return [
         */
         'fields' => [
             'locale' => true,
-            'namespace' => true,
+            'namespace' => false,
             'key' => true,
             'value' => true,
         ],
@@ -121,8 +121,9 @@ return [
         |
         */
         'filters' => [
-            \Fidum\LaravelTranslationLinter\Filters\DefaultLanguageFilesFilter::class,
-            // \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
+            \Fidum\LaravelTranslationLinter\Filters\IgnoreDefaultLanguageFilesFilter::class,
+            \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
+            \Fidum\LaravelTranslationLinter\Filters\IgnoreVendorKeysFilter::class,
         ],
     ],
 ];

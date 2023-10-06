@@ -4,7 +4,6 @@ namespace Fidum\LaravelTranslationLinter\Commands;
 
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection;
-use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedResultCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter;
 use Illuminate\Console\Command;
 
@@ -17,18 +16,9 @@ class UnusedCommand extends Command
     public function handle(
         UnusedFieldCollection $fields,
         UnusedFilterCollection $filters,
-        UnusedResultCollection $results,
         UnusedTranslationLinter $linter,
     ): int {
-        foreach ($linter->execute() as $locale => $namespaces) {
-            foreach ($namespaces as $namespace => $translations) {
-                foreach ($translations as $key => $value) {
-                    if ($filters->shouldReport($locale, $namespace, $key, $value)) {
-                        $results->addUnusedLanguageKey($locale, $namespace, $key, $value);
-                    }
-                }
-            }
-        }
+        $results = $linter->execute()->whereShouldReport($filters);
 
         if ($results->isEmpty()) {
             $this->components->info('No unused translations found!');

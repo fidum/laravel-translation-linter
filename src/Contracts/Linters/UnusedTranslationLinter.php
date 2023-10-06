@@ -2,9 +2,9 @@
 
 namespace Fidum\LaravelTranslationLinter\Contracts\Linters;
 
-use Illuminate\Support\Collection;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection;
 
 interface UnusedTranslationLinter
 {
-    public function execute(): Collection;
+    public function execute(): ResultObjectCollection;
 }

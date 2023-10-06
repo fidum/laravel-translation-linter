@@ -14,6 +14,7 @@ it('errors with default filters', function () {
 });
 
 it('errors with default no filters', function () {
+    config()->set('translation-linter.unused.fields.namespace', true);
     config()->set('translation-linter.unused.filters', []);
     withoutMockingConsoleOutput();
     expect(artisan('translation:unused'))
@@ -23,7 +24,6 @@ it('errors with default no filters', function () {
 });
 
 it('errors with default restricted fields', function () {
-    config()->set('translation-linter.unused.fields.namespace', false);
     config()->set('translation-linter.unused.fields.value', false);
 
     withoutMockingConsoleOutput();

@@ -3,17 +3,18 @@
 namespace Fidum\LaravelTranslationLinter\Filters;
 
 use Fidum\LaravelTranslationLinter\Contracts\Filters\Filter;
+use Fidum\LaravelTranslationLinter\Data\ResultObject;
 use Illuminate\Support\Str;
 
-class DefaultLanguageFilesFilter implements Filter
+class IgnoreDefaultLanguageFilesFilter implements Filter
 {
-    public function shouldReport(string $locale, string $namespace, string $key, ?string $value): bool
+    public function shouldReport(ResultObject $object): bool
     {
-        if ($namespace) {
+        if ($object->namespaceHint) {
             return true;
         }
 
-        return ! Str::startsWith($key, [
+        return ! Str::startsWith($object->key, [
             'validation.',
             'passwords.',
             'pagination.',
