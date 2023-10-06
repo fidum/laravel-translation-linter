@@ -4,47 +4,49 @@ namespace Fidum\LaravelTranslationLinter\Linters;
 
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
-use Fidum\LaravelTranslationLinter\Extractors\Extractor;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
-use http\Exception\InvalidArgumentException;
+use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
+use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
 use Symfony\Component\Finder\SplFileInfo;
 
-class UnusedTranslationLinter implements UnusedTranslationLinterContract
+readonly class UnusedTranslationLinter implements UnusedTranslationLinterContract
 {
     public function __construct(
-        protected Extractor $extractor,
-        protected LanguageFileFinder $finder,
+        protected ApplicationFileReader $used,
+        protected LanguageFileFinder $files,
+        protected LanguageFileReader $translations,
         protected LanguageNamespaceFinder $namespaces,
-        protected array $languages = ['en'],
+        protected array $languages,
     ) {
     }
 
     public function execute(): Collection
     {
-        $unusedStrings = [];
-        $usedStrings = $this->extractor->execute()->toArray();
-        $registeredNamespaces = $this->namespaces->execute();
+        $unused = [];
+        $used = $this->used->execute();
+        $namespaces = $this->namespaces->execute();
 
         foreach ($this->languages as $language) {
-            $unusedStrings[$language] = [];
+            $unused[$language] = [];
 
-            foreach ($registeredNamespaces as $namespace => $path) {
-                $unusedStrings[$language][$namespace] = [];
+            foreach ($namespaces as $namespace => $path) {
+                $unused[$language][$namespace] = [];
 
                 // TODO: Support json files
-                $files = $this->finder->execute($path, ['php']);
+                $files = $this->files->execute($path, ['php']);
 
                 /** @var SplFileInfo $file */
                 foreach ($files as $file) {
-                    $translations = $this->getTranslationsFromFile($file);
+                    $translations = $this->translations->execute($file);
 
-                    foreach ($translations as $field => $value) {
+                    foreach ($translations as $field => $children) {
                         $group = $this->getLanguageKey($file, $language, $field);
-                        foreach (Arr::dot(Arr::wrap($value)) as $key => $val) {
+
+                        foreach (Arr::dot(Arr::wrap($children)) as $key => $value) {
                             $groupedKey = Str::of($group)
                                 ->when(is_string($key), fn (Stringable $str) => $str->append(".$key"))
                                 ->toString();
@@ -54,8 +56,8 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
                                 ->append($groupedKey)
                                 ->toString();
 
-                            if (! in_array($namespacedKey, $usedStrings)) {
-                                $unusedStrings[$language][$namespace][$groupedKey] = $val;
+                            if ($used->doesntContain($namespacedKey)) {
+                                $unused[$language][$namespace][$groupedKey] = $value;
                             }
                         }
                     }
@@ -63,14 +65,7 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
             }
         }
 
-        return new Collection($unusedStrings);
-    }
-
-    public function withLanguages(array $languages): self
-    {
-        $this->languages = $languages;
-
-        return $this;
+        return new Collection($unused);
     }
 
     protected function getLanguageKey(SplFileInfo $file, string $language, string $key): string
@@ -86,20 +81,5 @@ class UnusedTranslationLinter implements UnusedTranslationLinterContract
             ->append('.')
             ->append($key)
             ->toString();
-    }
-
-    protected function getTranslationsFromFile(SplFileInfo $file): array
-    {
-        $translations = include $file->getPathname();
-
-        if ($file->getExtension() === 'json') {
-            $translations = json_decode($translations, true);
-        }
-
-        if (! is_array($translations)) {
-            throw new InvalidArgumentException("Unable to extract an array from {$file->getPathname()}!");
-        }
-
-        return $translations;
     }
 }

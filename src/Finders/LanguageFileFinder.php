@@ -6,7 +6,7 @@ use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder as Langu
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 
-class LanguageFileFinder implements LanguageFileFinderContract
+readonly class LanguageFileFinder implements LanguageFileFinderContract
 {
     public function __construct(protected Filesystem $filesystem)
     {

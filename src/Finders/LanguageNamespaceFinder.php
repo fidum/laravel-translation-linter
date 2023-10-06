@@ -6,7 +6,7 @@ use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder as 
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Collection;
 
-class LanguageNamespaceFinder implements LanguageNamespaceFinderContract
+readonly class LanguageNamespaceFinder implements LanguageNamespaceFinderContract
 {
     public function __construct(protected Translator $translator)
     {

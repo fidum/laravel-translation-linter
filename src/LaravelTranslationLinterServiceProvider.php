@@ -9,18 +9,20 @@ use Fidum\LaravelTranslationLinter\Commands\UnusedCommand;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection as UnusedFieldCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection as UnusedFilterCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedResultCollection as UnusedResultCollectionContract;
-use Fidum\LaravelTranslationLinter\Contracts\Extractors\Extractor as ExtractorContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder as ApplicationFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder as LanguageFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder as LanguageNamespaceFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
 use Fidum\LaravelTranslationLinter\Contracts\Parsers\Parser as ParserContract;
-use Fidum\LaravelTranslationLinter\Extractors\Extractor;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\LanguageFileReader as LanguageFileReaderContract;
 use Fidum\LaravelTranslationLinter\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
 use Fidum\LaravelTranslationLinter\Linters\UnusedTranslationLinter;
 use Fidum\LaravelTranslationLinter\Parsers\Parser;
+use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
+use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application;
 use Spatie\LaravelPackageTools\Package;
@@ -38,24 +40,25 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
     public function registeringPackage()
     {
-        $this->app->bind(ApplicationFileFinderContract::class, function (Application $app) {
-            return new ApplicationFileFinder(
-                $app->make('files'),
-                $app->make('config')->get('translation-linter.application.directories'),
-                $app->make('config')->get('translation-linter.application.extensions'),
-            );
-        });
+        $this->app->bind(ApplicationFileFinderContract::class, ApplicationFileFinder::class);
 
-        $this->app->bind(ExtractorContract::class, Extractor::class);
+        $this->app->when(ApplicationFileFinder::class)
+            ->needs('$directories')
+            ->giveConfig('translation-linter.application.directories');
+
+        $this->app->when(ApplicationFileFinder::class)
+            ->needs('$extensions')
+            ->giveConfig('translation-linter.application.extensions');
+
+        $this->app->bind(ApplicationFileReaderContract::class, ApplicationFileReader::class);
         $this->app->bind(LanguageFileFinderContract::class, LanguageFileFinder::class);
+        $this->app->bind(LanguageFileReaderContract::class, LanguageFileReader::class);
         $this->app->bind(LanguageNamespaceFinderContract::class, LanguageNamespaceFinder::class);
 
-        $this->app->bind(ParserContract::class, function (Application $app) {
-            $regex = $app->make('config')->get('translation-linter.lang.regex');
-            $functions = $app->make('config')->get('translation-linter.lang.functions');
-
-            return new Parser(str_replace('[FUNCTIONS]', implode('|', $functions), $regex));
-        });
+        $this->app->bind(ParserContract::class, Parser::class);
+        $this->app->when(Parser::class)
+            ->needs('$functions')
+            ->giveConfig('translation-linter.lang.functions');
 
         $this->app->bind(UnusedFieldCollectionContract::class, function (Application $app) {
             return UnusedFieldCollection::wrap($app->make('config')->get('translation-linter.unused.fields'));
@@ -66,20 +69,19 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         });
 
         $this->app->bind(UnusedResultCollectionContract::class, UnusedResultCollection::class);
-        $this->app->bind(UnusedTranslationLinterContract::class, function (Application $app) {
-            $linter = $app->make(UnusedTranslationLinter::class);
-            $languages = $app->make('config')->get('translation-linter.lang.locales');
-
-            return $linter->withLanguages($languages);
-        });
+        $this->app->bind(UnusedTranslationLinterContract::class, UnusedTranslationLinter::class);
+        $this->app->when(UnusedTranslationLinter::class)
+            ->needs('$languages')
+            ->giveConfig('translation-linter.lang.locales');
     }
 
     public function provides()
     {
         return [
             ApplicationFileFinderContract::class,
-            ExtractorContract::class,
+            ApplicationFileReaderContract::class,
             LanguageFileFinderContract::class,
+            LanguageFileReaderContract::class,
             LanguageNamespaceFinderContract::class,
             ParserContract::class,
             UnusedFieldCollectionContract::class,

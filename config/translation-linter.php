@@ -59,18 +59,6 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Language Function Regex Pattern
-        |--------------------------------------------------------------------------
-        |
-        | The following contains the regex pattern used to find the functions
-        | configured above. The '[FUNCTIONS]' part will be replaced with a
-        | pipe delimited list of the functions defined above.
-        |
-        */
-        'regex' => '/([FUNCTIONS])\([\t\r\n\s]*[\'"](.+)[\'"][\),\t\r\n\s]/U',
-
-        /*
-        |--------------------------------------------------------------------------
         | Language Locales
         |--------------------------------------------------------------------------
         |

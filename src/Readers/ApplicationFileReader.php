@@ -1,13 +1,13 @@
 <?php
 
-namespace Fidum\LaravelTranslationLinter\Extractors;
+namespace Fidum\LaravelTranslationLinter\Readers;
 
-use Fidum\LaravelTranslationLinter\Contracts\Extractors\Extractor as ExtractorContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Parsers\Parser;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
 use Illuminate\Support\Collection;
 
-class Extractor implements ExtractorContract
+class ApplicationFileReader implements ApplicationFileReaderContract
 {
     public function __construct(
         protected ApplicationFileFinder $finder,

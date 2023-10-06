@@ -6,7 +6,7 @@ use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder as Ap
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 
-class ApplicationFileFinder implements ApplicationFileFinderContract
+readonly class ApplicationFileFinder implements ApplicationFileFinderContract
 {
     public function __construct(
         protected Filesystem $filesystem,
