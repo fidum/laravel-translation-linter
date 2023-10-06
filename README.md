@@ -37,7 +37,7 @@ composer require --dev fidum/laravel-translation-linter
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-translation-linter-config"
+php artisan vendor:publish --tag="translation-linter-config"
 ```
 
 [Click here to see the contents of the config file](config/translation-linter.php).
