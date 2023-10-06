@@ -3,7 +3,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/fidum/laravel-translation-linter.svg?style=for-the-badge)](https://packagist.org/packages/fidum/laravel-translation-linter)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/fidum/laravel-translation-linter/run-tests.yml?branch=main&label=tests&style=for-the-badge)](https://github.com/fidum/laravel-translation-linter/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/fidum/laravel-translation-linter/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=for-the-badge)](https://github.com/fidum/laravel-translation-linter/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/fidum/laravel-translation-linter.svg?style=for-the-badge)](https://packagist.org/packages/fidum/laravel-translation-linter)
 [![Twitter Follow](https://img.shields.io/badge/follow-%40danmasonmp-1DA1F2?logo=twitter&style=for-the-badge)](https://twitter.com/danmasonmp)
 
 This package provides commands to help you keep your translations organized. 
