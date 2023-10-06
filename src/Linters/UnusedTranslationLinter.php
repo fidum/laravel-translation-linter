@@ -21,8 +21,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         protected LanguageFileReader $translations,
         protected LanguageNamespaceFinder $namespaces,
         protected array $languages,
-    ) {
-    }
+    ) {}
 
     public function execute(): Collection
     {

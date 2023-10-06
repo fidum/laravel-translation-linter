@@ -8,9 +8,7 @@ use Illuminate\Support\Collection;
 
 readonly class LanguageNamespaceFinder implements LanguageNamespaceFinderContract
 {
-    public function __construct(protected Translator $translator)
-    {
-    }
+    public function __construct(protected Translator $translator) {}
 
     public function execute(): Collection
     {

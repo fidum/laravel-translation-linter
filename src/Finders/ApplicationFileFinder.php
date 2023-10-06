@@ -12,8 +12,7 @@ readonly class ApplicationFileFinder implements ApplicationFileFinderContract
         protected Filesystem $filesystem,
         protected array $directories,
         protected array $extensions
-    ) {
-    }
+    ) {}
 
     public function execute(): Collection
     {

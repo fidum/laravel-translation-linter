@@ -12,8 +12,7 @@ class ApplicationFileReader implements ApplicationFileReaderContract
     public function __construct(
         protected ApplicationFileFinder $finder,
         protected Parser $parser,
-    ) {
-    }
+    ) {}
 
     public function execute(): Collection
     {

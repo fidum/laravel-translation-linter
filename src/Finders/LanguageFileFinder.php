@@ -8,9 +8,7 @@ use Illuminate\Support\Collection;
 
 readonly class LanguageFileFinder implements LanguageFileFinderContract
 {
-    public function __construct(protected Filesystem $filesystem)
-    {
-    }
+    public function __construct(protected Filesystem $filesystem) {}
 
     public function execute(string $path, array $extensions): Collection
     {
