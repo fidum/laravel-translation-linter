@@ -8,11 +8,15 @@ class Example
 {
     public function handle()
     {
-        __('example.used');
-        trans('folder/example.used');
-        trans_choice('example::example.used');
-        Lang::get(
+        $example = __('example.used');
+
+        if (true) {
+            trans('folder/example.used');
+            trans_choice('example::example.used');
+        }
+
+        collect()->when(fn () => Lang::get(
             'example::folder/example.used'
-        );
+        ));
     }
 }
