@@ -49,23 +49,23 @@ This reads through all your code and finds all your language function usage.
 Then attempts to find matches in your language files and will output any 
 language keys that are not being used in your code.
 
-**Note:** Default laravel language files are ignored by default.
-You can change the filters used in the [config file](config/translation-linter.php).
+**Note:** Some language keys are filtered out by default, you can change the 
+filters used in the [config file](config/translation-linter.php).
 
 ```sh
 $ php artisan translation:unused
 
    ERROR  5 unused translations found.  
 
-+--------+-----------+------------------------------------+----------------------------------------------------+
-| Locale | Namespace | Key                                | Value                                              |
-+--------+-----------+------------------------------------+----------------------------------------------------+
-| en     |           | Unused PHP Class                   | I am unused in php class                           |
-| en     |           | Unused Blade File                  | I am unused in blade                               |
-| en     |           | Unused Vue Component               | I am unused in vue component                       |
-| en     |           | example.unused                     | I am unused in php class                           |
-| de     |           | example.unused                     | Ich werde in einer PHP-Klasse nicht verwendet      |
-+--------+-----------+------------------------------------+----------------------------------------------------+
++--------+----------------------+-----------------------------------------------+
+| Locale | Key                  | Value                                         |
++--------+----------------------+-----------------------------------------------+
+| en     | Unused PHP Class     | I am unused in php class                      |
+| en     | Unused Blade File    | I am unused in blade                          |
+| en     | Unused Vue Component | I am unused in vue component                  |
+| en     | example.unused       | I am unused in php class                      |
+| de     | example.unused       | Ich werde in einer PHP-Klasse nicht verwendet |
++--------+----------------------+-----------------------------------------------+
 ```
 
 ## Testing
