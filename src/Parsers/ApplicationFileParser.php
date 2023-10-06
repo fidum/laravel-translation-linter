@@ -2,25 +2,24 @@
 
 namespace Fidum\LaravelTranslationLinter\Parsers;
 
-use Fidum\LaravelTranslationLinter\Contracts\Parsers\Parser as ParserContract;
+use Fidum\LaravelTranslationLinter\Contracts\Parsers\ApplicationFileParser as ApplicationFileParserContract;
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\SplFileInfo;
 
-readonly class Parser implements ParserContract
+readonly class ApplicationFileParser implements ApplicationFileParserContract
 {
-    protected string $regex;
+    protected const REGEX = '/([FUNCTIONS])\([\t\r\n\s]*[\'"](.+)[\'"][\),\t\r\n\s]/U';
 
     protected string $pattern;
 
     public function __construct(array $functions)
     {
-        $this->regex = '/([FUNCTIONS])\([\t\r\n\s]*[\'"](.+)[\'"][\),\t\r\n\s]/U';
-        $this->pattern = str_replace('[FUNCTIONS]', implode('|', $functions), $this->regex);
+        $this->pattern = str_replace('[FUNCTIONS]', implode('|', $functions), static::REGEX);
     }
 
     public function execute(SplFileInfo $file): Collection
     {
-        $strings = collect();
+        $strings = new Collection();
 
         $data = $file->getContents();
 

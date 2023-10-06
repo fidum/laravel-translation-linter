@@ -3,7 +3,7 @@
 namespace Fidum\LaravelTranslationLinter\Readers;
 
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder;
-use Fidum\LaravelTranslationLinter\Contracts\Parsers\Parser;
+use Fidum\LaravelTranslationLinter\Contracts\Parsers\ApplicationFileParser;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
 use Illuminate\Support\Collection;
 
@@ -11,7 +11,7 @@ class ApplicationFileReader implements ApplicationFileReaderContract
 {
     public function __construct(
         protected ApplicationFileFinder $finder,
-        protected Parser $parser,
+        protected ApplicationFileParser $parser,
     ) {}
 
     public function execute(): Collection
