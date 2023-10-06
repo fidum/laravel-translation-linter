@@ -72,10 +72,10 @@ return [
         | Language File Readers
         |--------------------------------------------------------------------------
         |
-        | The following array lists the language file "readers" that will be
-        | parsed for translation keys. This should be mapped as a key value
-        | array. The key should be the "extension" and the value should be
-        | the "Reader" class that implements the require interface.
+        | The following array lists the language file "readers" that will extract
+        | the translations from your language files. This should be mapped as a
+        | key value array. The key should be the "extension" and the value
+        | should be the "Reader" class that implements the required interface.
         |
         | If you want to disable reading a specific file type then you can
         | remove it from the array below.
