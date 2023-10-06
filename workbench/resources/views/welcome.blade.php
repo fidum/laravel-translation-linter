@@ -1,6 +1,7 @@
-@lang('example.blade.lang.used')
+@lang('example.blade.lang.used', ['foo' => 'bar'])
 @lang(
     'folder/example.blade.lang.used',
+    ['foo' => 'bar'],
 )
 @lang('example::example.blade.lang.used')
 @lang(
