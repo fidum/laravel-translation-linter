@@ -1,11 +1,11 @@
 6 unused translations found
-+------+-----------+------------------------------------+-------------+
-| Lang | Namespace | Key                                | Value       |
-+------+-----------+------------------------------------+-------------+
-| en   |           | example.unused                     | I am unused |
-| en   |           | example.blade.choice.unused        | I am unused |
-| en   |           | example.blade.lang.unused          | I am unused |
-| en   |           | folder/example.unused              | I am unused |
-| en   |           | folder/example.blade.choice.unused | I am unused |
-| en   |           | folder/example.blade.lang.unused   | I am unused |
-+------+-----------+------------------------------------+-------------+
++--------+-----------+------------------------------------+-------------+
+| Locale | Namespace | Key                                | Value       |
++--------+-----------+------------------------------------+-------------+
+| en     |           | example.unused                     | I am unused |
+| en     |           | example.blade.choice.unused        | I am unused |
+| en     |           | example.blade.lang.unused          | I am unused |
+| en     |           | folder/example.unused              | I am unused |
+| en     |           | folder/example.blade.choice.unused | I am unused |
+| en     |           | folder/example.blade.lang.unused   | I am unused |
++--------+-----------+------------------------------------+-------------+

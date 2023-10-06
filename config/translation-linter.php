@@ -80,7 +80,7 @@ return [
         |
         */
         'fields' => [
-            'lang' => true,
+            'locale' => true,
             'namespace' => true,
             'key' => true,
             'value' => true,

@@ -9,10 +9,10 @@ use Illuminate\Support\Collection;
 
 class UnusedResultCollection extends Collection implements UnusedResultCollectionContract
 {
-    public function addUnusedLanguageKey(string $lang, string $namespace, string $key, ?string $value): self
+    public function addUnusedLanguageKey(string $locale, string $namespace, string $key, ?string $value): self
     {
         return $this->push([
-            'lang' => $lang,
+            'locale' => $locale,
             'namespace' => $namespace,
             'key' => $key,
             'value' => $value,

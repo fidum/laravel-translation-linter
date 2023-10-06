@@ -8,7 +8,7 @@ use Illuminate\Support\Enumerable;
 
 interface UnusedResultCollection extends Arrayable, Enumerable
 {
-    public function addUnusedLanguageKey(string $lang, string $namespace, string $key, ?string $value): self;
+    public function addUnusedLanguageKey(string $locale, string $namespace, string $key, ?string $value): self;
 
     public function toCommandTableOutputArray(UnusedFieldCollectionContract $fields): array;
 }

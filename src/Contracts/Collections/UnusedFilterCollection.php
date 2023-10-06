@@ -7,5 +7,5 @@ use Illuminate\Support\Enumerable;
 
 interface UnusedFilterCollection extends Arrayable, Enumerable
 {
-    public function shouldReport(string $lang, string $namespace, string $key, ?string $value): bool;
+    public function shouldReport(string $locale, string $namespace, string $key, ?string $value): bool;
 }
