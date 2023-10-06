@@ -41,8 +41,8 @@ return [
         |--------------------------------------------------------------------------
         |
         | The following array lists the translation "functions" that will be used
-        | to find translation usage throughout your code. This is used in the
-        | regex pattern below to detect translations.
+        | to find translation usage throughout your code. This is injected into
+        | a regex pattern we use internally.
         |
         */
         'functions' => [
