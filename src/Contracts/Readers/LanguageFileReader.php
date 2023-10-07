@@ -6,5 +6,5 @@ use Symfony\Component\Finder\SplFileInfo;
 
 interface LanguageFileReader
 {
-    public function execute(SplFileInfo $file): array;
+    public function getTranslations(SplFileInfo $file): array;
 }

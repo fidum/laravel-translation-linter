@@ -3,12 +3,13 @@
 namespace Fidum\LaravelTranslationLinter\Linters;
 
 use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection;
+use Fidum\LaravelTranslationLinter\Contracts\Factories\LanguageKeyFactory;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder;
+use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\LanguageFileReader;
 use Fidum\LaravelTranslationLinter\Data\ResultObject;
-use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
-use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
-use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
@@ -20,6 +21,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         protected ApplicationFileReader $used,
         protected LanguageFileFinder $files,
         protected LanguageFileReader $translations,
+        protected LanguageKeyFactory $factory,
         protected LanguageNamespaceFinder $namespaces,
         protected ResultObjectCollection $results,
         protected array $locales,
@@ -37,10 +39,10 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
 
                 /** @var SplFileInfo $file */
                 foreach ($files as $file) {
-                    $translations = $this->translations->execute($file);
+                    $translations = $this->translations->getTranslations($file);
 
                     foreach ($translations as $field => $children) {
-                        $group = $this->getLanguageKey($file, $locale, $field);
+                        $group = $this->factory->getLanguageKey($file, $locale, $field);
 
                         foreach (Arr::dot(Arr::wrap($children)) as $key => $value) {
                             $groupedKey = Str::of($group)
@@ -69,20 +71,5 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         }
 
         return $this->results;
-    }
-
-    protected function getLanguageKey(SplFileInfo $file, string $language, string $key): string
-    {
-        if ($file->getExtension() === 'json') {
-            return $key;
-        }
-
-        return Str::of($file->getPath())
-            ->finish(DIRECTORY_SEPARATOR)
-            ->after(DIRECTORY_SEPARATOR.$language.DIRECTORY_SEPARATOR)
-            ->append($file->getFilenameWithoutExtension())
-            ->append('.')
-            ->append($key)
-            ->toString();
     }
 }

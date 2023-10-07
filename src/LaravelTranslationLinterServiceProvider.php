@@ -9,6 +9,7 @@ use Fidum\LaravelTranslationLinter\Commands\UnusedCommand;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection as ResultObjectCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection as UnusedFieldCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection as UnusedFilterCollectionContract;
+use Fidum\LaravelTranslationLinter\Contracts\Factories\LanguageKeyFactory as LanguageKeyFactoryContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder as ApplicationFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder as LanguageFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder as LanguageNamespaceFinderContract;
@@ -16,6 +17,7 @@ use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as 
 use Fidum\LaravelTranslationLinter\Contracts\Parsers\ApplicationFileParser as ApplicationFileParserContract;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\LanguageFileReader as LanguageFileReaderContract;
+use Fidum\LaravelTranslationLinter\Factories\LanguageKeyFactory;
 use Fidum\LaravelTranslationLinter\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
@@ -68,6 +70,8 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             ->needs('$driverConfig')
             ->giveConfig('translation-linter.lang.readers');
 
+        $this->app->bind(LanguageKeyFactoryContract::class, LanguageKeyFactory::class);
+
         $this->app->bind(LanguageNamespaceFinderContract::class, LanguageNamespaceFinder::class);
 
         $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
@@ -96,6 +100,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             LanguageFileFinderContract::class,
             LanguageFileReaderContract::class,
             LanguageFileReaderManager::class,
+            LanguageKeyFactoryContract::class,
             LanguageNamespaceFinderContract::class,
             ResultObjectCollectionContract::class,
             UnusedFieldCollectionContract::class,

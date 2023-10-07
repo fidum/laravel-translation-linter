@@ -10,7 +10,7 @@ use Illuminate\Support\Enumerable;
 
 /**
  * @method self __construct(ResultObject[] $items = null)
- * @method self push(ResultObject[] ...$items)
+ * @method self push(ResultObject $item)
  */
 interface ResultObjectCollection extends Arrayable, Enumerable
 {

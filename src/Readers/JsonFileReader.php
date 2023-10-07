@@ -8,7 +8,7 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class JsonFileReader implements LanguageFileReaderContract
 {
-    public function execute(SplFileInfo $file): array
+    public function getTranslations(SplFileInfo $file): array
     {
         $translations = json_decode($file->getContents(), true);
 
