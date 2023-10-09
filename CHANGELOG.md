@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 1.0.4 - 2023-10-09
+
+### What's Changed
+
+- Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/fidum/laravel-translation-linter/pull/6
+- Create missing baseline directories by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/7
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.3...1.0.4
+
 ## 1.0.3 - 2023-10-09
 
 ### What's Changed
