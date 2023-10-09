@@ -106,6 +106,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             LanguageFileReaderManager::class,
             LanguageKeyFactoryContract::class,
             LanguageNamespaceFinderContract::class,
+            LanguageNamespaceKeyFactoryContract::class,
             ResultObjectCollectionContract::class,
             UnusedFieldCollectionContract::class,
             UnusedFilterCollectionContract::class,
