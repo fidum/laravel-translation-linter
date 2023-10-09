@@ -16,7 +16,7 @@ class ResultObjectCollection extends Collection implements ResultObjectCollectio
         $this->items = [];
     }
 
-    public function toBaseLineJson(): string
+    public function toBaselineJson(): string
     {
         return $this
             ->groupBy('locale')

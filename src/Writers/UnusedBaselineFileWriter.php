@@ -15,9 +15,10 @@ class UnusedBaselineFileWriter implements UnusedBaselineFileWriterContract
 
     public function execute(ResultObjectCollection $results)
     {
-        $this->filesystem->put(
-            $this->file,
-            $results->toBaseLineJson(),
-        );
+        $path = $this->filesystem->dirname($this->file);
+
+        $this->filesystem->ensureDirectoryExists($path);
+
+        $this->filesystem->put($this->file, $results->toBaselineJson());
     }
 }

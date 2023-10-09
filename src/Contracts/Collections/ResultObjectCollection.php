@@ -16,7 +16,7 @@ interface ResultObjectCollection extends Arrayable, Enumerable
 {
     public function reset(): void;
 
-    public function toBaseLineJson(): string;
+    public function toBaselineJson(): string;
 
     public function toCommandTableOutputArray(FieldCollectionContract $fields): array;
 
