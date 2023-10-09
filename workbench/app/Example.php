@@ -3,15 +3,16 @@
 namespace Workbench\App;
 
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\Validator;
 
 class Example
 {
-    public function handle()
+    public function handle(Validator $validator)
     {
         $example = __('example.used');
 
         if (true) {
-            trans('folder/example.used');
+            trans("folder/example.used");
             trans_choice('example::example.used');
         }
 

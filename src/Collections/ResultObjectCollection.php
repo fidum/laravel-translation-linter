@@ -16,6 +16,14 @@ class ResultObjectCollection extends Collection implements ResultObjectCollectio
         $this->items = [];
     }
 
+    public function toBaseLineJson(): string
+    {
+        return $this
+            ->groupBy('locale')
+            ->map(fn (ResultObjectCollection $collection) => $collection->pluck('namespaceHintedKey')->values())
+            ->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    }
+
     public function toCommandTableOutputArray(FieldCollectionContract $fields): array
     {
         $only = $fields->enabled()->toArray();

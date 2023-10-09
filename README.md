@@ -52,6 +52,19 @@ $ php artisan translation:unused
 +--------+----------------------+-----------------------------------------------+
 ```
 
+You can generate a baseline file which will be used to ignore specific keys with the 
+`--generate-baseline` or `-b` command options:
+
+```sh
+$ php artisan translation:unused --generate-baseline 
+
+   INFO  Baseline file written with 5 unused translation keys.  
+
+$ php artisan translation:unused
+
+   INFO  No unused translations found!  
+```
+
 ## Roadmap
 - [x] Supports JSON and PHP translation files
     - You can enable / disable file types in the config

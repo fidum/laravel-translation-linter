@@ -8,5 +8,7 @@ use Illuminate\Support\Enumerable;
 
 interface FilterCollection extends Arrayable, Enumerable
 {
+    public function push(...$values);
+
     public function shouldReport(ResultObject $object): bool;
 }

@@ -1,5 +1,8 @@
 {
     "preset": "laravel",
+    "exclude": [
+        "workbench"
+    ],
     "rules": {
         "single_line_empty_body": true
     }
