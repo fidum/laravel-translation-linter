@@ -62,7 +62,8 @@ return [
         | Language Locales
         |--------------------------------------------------------------------------
         |
-        | The following array contains the language 'locales' to use.
+        | The following array contains the "locales" to use when finding all of
+        | your registered language files.
         |
         */
         'locales' => [env('LOCALE_DEFAULT', 'en')],
