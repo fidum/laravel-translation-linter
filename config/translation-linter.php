@@ -99,7 +99,7 @@ return [
         | option when running the command.
         |
         */
-        'baseline' => base_path('translations.unused.baseline.json'),
+        'baseline' => lang_path('.lint/unused.json'),
 
         /*
         |--------------------------------------------------------------------------
