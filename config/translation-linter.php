@@ -96,7 +96,7 @@ return [
         |
         | This is the location of the baseline file that is used to ignore specific
         | translation keys. You can generate this file by using the `--generate-baseline`
-        | option when running the command.
+        | option when running the command. You should commit this file.
         |
         */
         'baseline' => lang_path('.lint/unused.json'),
