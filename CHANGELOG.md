@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 1.0.2 - 2023-10-09
+
+### What's Changed
+
+- Handle namespaced json files by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/4
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.1...1.0.2
+
 ## 1.0.1 - 2023-10-07
 
 ### 1.0.1 - 2023-10-07
