@@ -1,0 +1,42 @@
+{
+    "en": [
+        "Unused Vendor PHP Class",
+        "Unused Vendor Blade File",
+        "Unused Vendor Vue Component",
+        "example::example.unused",
+        "example::example.blade.choice.unused",
+        "example::example.blade.lang.unused",
+        "example::example.vue.unused",
+        "example::folder/example.unused",
+        "example::folder/example.blade.choice.unused",
+        "example::folder/example.blade.lang.unused",
+        "example::folder/example.vue.unused",
+        "Unused PHP Class",
+        "Unused Blade File",
+        "Unused Vue Component",
+        "example.unused",
+        "example.blade.choice.unused",
+        "example.blade.lang.unused",
+        "example.vue.unused",
+        "folder/example.unused",
+        "folder/example.blade.choice.unused",
+        "folder/example.blade.lang.unused",
+        "folder/example.vue.unused"
+    ],
+    "de": [
+        "Unused Vendor PHP Class",
+        "Unused Vendor Blade File",
+        "Unused Vendor Vue Component",
+        "Unused PHP Class",
+        "Unused Blade File",
+        "Unused Vue Component",
+        "example.unused",
+        "example.blade.choice.unused",
+        "example.blade.lang.unused",
+        "example.vue.unused",
+        "folder/example.unused",
+        "folder/example.blade.choice.unused",
+        "folder/example.blade.lang.unused",
+        "folder/example.vue.unused"
+    ]
+}

@@ -90,6 +90,18 @@ return [
     'unused' => [
         /*
         |--------------------------------------------------------------------------
+        | Baseline file
+        |--------------------------------------------------------------------------
+        |
+        | This is the location of the baseline file that is used to ignore specific
+        | translation keys. You can generate this file by using the `--generate-baseline`
+        | option when running the command.
+        |
+        */
+        'baseline' => base_path('translations.unused.baseline.json'),
+
+        /*
+        |--------------------------------------------------------------------------
         | Output Fields
         |--------------------------------------------------------------------------
         |
