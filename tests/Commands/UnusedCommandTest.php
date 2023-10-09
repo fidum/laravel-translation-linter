@@ -55,6 +55,18 @@ it('errors with multiple locales', function () {
         ->toMatchSnapshot();
 });
 
+it('errors with multiple locales and no filters', function () {
+    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.unused.fields.namespace', true);
+    config()->set('translation-linter.unused.filters', []);
+
+    withoutMockingConsoleOutput();
+    expect(artisan('translation:unused'))
+        ->toBe(1)
+        ->and(Artisan::output())
+        ->toMatchSnapshot();
+});
+
 it('outputs success message when no unused translations found', function () {
     config()->set('translation-linter.lang.locales', []);
     withoutMockingConsoleOutput();

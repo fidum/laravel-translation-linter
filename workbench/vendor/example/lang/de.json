@@ -1,0 +1,8 @@
+{
+    "Used Vendor PHP Class": "Ich werde in einer PHP-Klasse verwendet",
+    "Unused Vendor PHP Class": "Ich werde in einer PHP-Klasse nicht verwendet",
+    "Used Vendor Blade File": "Ich werde in Blade verwendet",
+    "Unused Vendor Blade File": "Ich werde in Blade nicht verwendet",
+    "Used Vendor Vue Component": "Ich werde in einem Vue-Komponenten verwendet",
+    "Unused Vendor Vue Component": "Ich werde in einem Vue-Komponenten nicht verwendet"
+}

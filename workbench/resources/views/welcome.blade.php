@@ -9,6 +9,7 @@
 )
 
 {{ __('Used Blade File') }}
+{{ __('Used Vendor Blade File') }}
 
 @if(true)
     @choice('example.blade.choice.used', 1)
