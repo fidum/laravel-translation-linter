@@ -4,6 +4,7 @@ namespace Fidum\LaravelTranslationLinter\Linters;
 
 use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection;
 use Fidum\LaravelTranslationLinter\Contracts\Factories\LanguageKeyFactory;
+use Fidum\LaravelTranslationLinter\Contracts\Factories\LanguageNamespaceKeyFactory;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
@@ -21,8 +22,9 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
         protected ApplicationFileReader $used,
         protected LanguageFileFinder $files,
         protected LanguageFileReader $translations,
-        protected LanguageKeyFactory $factory,
+        protected LanguageKeyFactory $languageKeyFactory,
         protected LanguageNamespaceFinder $namespaces,
+        protected LanguageNamespaceKeyFactory $namespaceKeyFactory,
         protected ResultObjectCollection $results,
         protected array $locales,
     ) {}
@@ -42,17 +44,23 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                     $translations = $this->translations->getTranslations($file);
 
                     foreach ($translations as $field => $children) {
-                        $group = $this->factory->getLanguageKey($file, $locale, $field);
-
                         foreach (Arr::dot(Arr::wrap($children)) as $key => $value) {
-                            $groupedKey = Str::of($group)
+                            $fieldKey = Str::of($field)
                                 ->when(is_string($key), fn (Stringable $str) => $str->append(".$key"))
                                 ->toString();
 
-                            $namespacedKey = Str::of($namespace)
-                                ->whenNotEmpty(fn (Stringable $str) => $str->append('::'))
-                                ->append($groupedKey)
-                                ->toString();
+                            $groupedKey = $this->languageKeyFactory->getLanguageKey(
+                                file: $file,
+                                locale: $locale,
+                                key: $fieldKey
+                            );
+
+                            $namespacedKey = $this->namespaceKeyFactory->getNamespaceHintedKey(
+                                file: $file,
+                                locale: $locale,
+                                namespaceHint: $namespace,
+                                key: $groupedKey
+                            );
 
                             if ($used->doesntContain($namespacedKey)) {
                                 $this->results->push(new ResultObject(

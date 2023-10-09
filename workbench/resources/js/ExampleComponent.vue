@@ -15,4 +15,8 @@ const exampleC = computed(() => __(
     'Used Vue Component',
     {foo: 'bar'},
 ))
+const exampleD = computed(() => __(
+    'Used Vendor Vue Component',
+    {foo: 'bar'},
+))
 </script>
