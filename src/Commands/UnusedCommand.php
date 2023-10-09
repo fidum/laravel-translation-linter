@@ -12,7 +12,7 @@ use Illuminate\Console\Command;
 class UnusedCommand extends Command
 {
     public $signature = 'translation:unused
-        {--generate-baseline : Generate a baseline file from the unused keys.}';
+        {--b|generate-baseline : Generate a baseline file from the unused keys.}';
 
     public $description = 'Finds unused language keys.';
 
