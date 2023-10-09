@@ -12,8 +12,6 @@ All notable changes to `laravel-translation-linter` will be documented in this f
 
 ## 1.0.1 - 2023-10-07
 
-### 1.0.1 - 2023-10-07
-
 #### What's Changed
 
 - Refactor language key generation (https://github.com/fidum/laravel-translation-linter/commit/34ec4eda2d2f2dc04013a600d3cbb29c2890ac86)
