@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 1.0.5 - 2023-10-11
+
+### What's Changed
+
+- Add support for lint-staged by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/8
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.4...1.0.5
+
 ## 1.0.4 - 2023-10-09
 
 ### What's Changed
