@@ -23,7 +23,7 @@ it('errors with default no filters', function () {
     config()->set('translation-linter.unused.filters', []);
 
     withoutMockingConsoleOutput();
-    expect(artisan('translation:unused'))
+    expect(artisan('translation:unused "/this/argument/is/ignored" "/and/so/is/this"'))
         ->toBe(1)
         ->and(Artisan::output())
         ->toMatchSnapshot();

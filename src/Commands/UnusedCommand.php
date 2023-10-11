@@ -12,6 +12,7 @@ use Illuminate\Console\Command;
 class UnusedCommand extends Command
 {
     public $signature = 'translation:unused
+        {paths?* :  This not used by this command but adds support for lint-staged. }
         {--b|generate-baseline : Generate a baseline file from the unused keys.}';
 
     public $description = 'Finds unused language keys.';
