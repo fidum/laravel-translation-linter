@@ -91,7 +91,7 @@ return [
     'unused' => [
         /*
         |--------------------------------------------------------------------------
-        | Baseline file
+        | Baseline File
         |--------------------------------------------------------------------------
         |
         | This is the location of the baseline file that is used to ignore specific
