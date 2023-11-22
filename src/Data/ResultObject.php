@@ -20,8 +20,7 @@ readonly class ResultObject implements Arrayable
     {
         return [
             'locale' => $this->locale,
-            'namespace' => $this->namespaceHint,
-            'key' => $this->key,
+            'key' => $this->namespaceHintedKey,
             'value' => $this->value,
         ];
     }
