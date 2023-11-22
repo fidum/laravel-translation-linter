@@ -1,29 +1,29 @@
 
    ERROR  22 unused translations found.  
 
-+--------+-----------+------------------------------------+------------------------------+
-| Locale | Namespace | Key                                | Value                        |
-+--------+-----------+------------------------------------+------------------------------+
-| en     | example   | Unused Vendor PHP Class            | I am unused in php class     |
-| en     | example   | Unused Vendor Blade File           | I am unused in blade         |
-| en     | example   | Unused Vendor Vue Component        | I am unused in vue component |
-| en     | example   | example.unused                     | I am unused in php class     |
-| en     | example   | example.blade.choice.unused        | I am unused in blade         |
-| en     | example   | example.blade.lang.unused          | I am unused in blade         |
-| en     | example   | example.vue.unused                 | I am unused in vue component |
-| en     | example   | folder/example.unused              | I am unused in php class     |
-| en     | example   | folder/example.blade.choice.unused | I am unused in blade         |
-| en     | example   | folder/example.blade.lang.unused   | I am unused in blade         |
-| en     | example   | folder/example.vue.unused          | I am unused in vue component |
-| en     |           | Unused PHP Class                   | I am unused in php class     |
-| en     |           | Unused Blade File                  | I am unused in blade         |
-| en     |           | Unused Vue Component               | I am unused in vue component |
-| en     |           | example.unused                     | I am unused in php class     |
-| en     |           | example.blade.choice.unused        | I am unused in blade         |
-| en     |           | example.blade.lang.unused          | I am unused in blade         |
-| en     |           | example.vue.unused                 | I am unused in vue component |
-| en     |           | folder/example.unused              | I am unused in php class     |
-| en     |           | folder/example.blade.choice.unused | I am unused in blade         |
-| en     |           | folder/example.blade.lang.unused   | I am unused in blade         |
-| en     |           | folder/example.vue.unused          | I am unused in vue component |
-+--------+-----------+------------------------------------+------------------------------+
++--------+---------------------------------------------+------------------------------+
+| Locale | Key                                         | Value                        |
++--------+---------------------------------------------+------------------------------+
+| en     | Unused Vendor PHP Class                     | I am unused in php class     |
+| en     | Unused Vendor Blade File                    | I am unused in blade         |
+| en     | Unused Vendor Vue Component                 | I am unused in vue component |
+| en     | example::example.unused                     | I am unused in php class     |
+| en     | example::example.blade.choice.unused        | I am unused in blade         |
+| en     | example::example.blade.lang.unused          | I am unused in blade         |
+| en     | example::example.vue.unused                 | I am unused in vue component |
+| en     | example::folder/example.unused              | I am unused in php class     |
+| en     | example::folder/example.blade.choice.unused | I am unused in blade         |
+| en     | example::folder/example.blade.lang.unused   | I am unused in blade         |
+| en     | example::folder/example.vue.unused          | I am unused in vue component |
+| en     | Unused PHP Class                            | I am unused in php class     |
+| en     | Unused Blade File                           | I am unused in blade         |
+| en     | Unused Vue Component                        | I am unused in vue component |
+| en     | example.unused                              | I am unused in php class     |
+| en     | example.blade.choice.unused                 | I am unused in blade         |
+| en     | example.blade.lang.unused                   | I am unused in blade         |
+| en     | example.vue.unused                          | I am unused in vue component |
+| en     | folder/example.unused                       | I am unused in php class     |
+| en     | folder/example.blade.choice.unused          | I am unused in blade         |
+| en     | folder/example.blade.lang.unused            | I am unused in blade         |
+| en     | folder/example.vue.unused                   | I am unused in vue component |
++--------+---------------------------------------------+------------------------------+

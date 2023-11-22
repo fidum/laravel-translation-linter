@@ -19,7 +19,6 @@ it('errors with default filters', function () {
 });
 
 it('errors with default no filters', function () {
-    config()->set('translation-linter.unused.fields.namespace', true);
     config()->set('translation-linter.unused.filters', []);
 
     withoutMockingConsoleOutput();
@@ -41,7 +40,6 @@ it('errors with default restricted fields', function () {
 
 it('errors with default no fields', function () {
     config()->set('translation-linter.unused.fields.locale', false);
-    config()->set('translation-linter.unused.fields.namespace', false);
     config()->set('translation-linter.unused.fields.key', false);
     config()->set('translation-linter.unused.fields.value', false);
 
@@ -63,7 +61,6 @@ it('errors with multiple locales', function () {
 
 it('errors with multiple locales and no filters', function () {
     config()->set('translation-linter.lang.locales', ['en', 'de']);
-    config()->set('translation-linter.unused.fields.namespace', true);
     config()->set('translation-linter.unused.filters', []);
 
     withoutMockingConsoleOutput();
@@ -75,7 +72,6 @@ it('errors with multiple locales and no filters', function () {
 
 it('generates baseline file then successfully ignores baseline keys', function () {
     config()->set('translation-linter.lang.locales', ['en', 'de']);
-    config()->set('translation-linter.unused.fields.namespace', true);
     config()->set('translation-linter.unused.filters', [IgnoreKeysFromUnusedBaselineFileFilter::class]);
 
     withoutMockingConsoleOutput();

@@ -113,7 +113,6 @@ return [
         */
         'fields' => [
             'locale' => true,
-            'namespace' => false,
             'key' => true,
             'value' => true,
         ],
