@@ -51,7 +51,7 @@ it('errors with default no fields', function () {
 });
 
 it('errors with multiple locales', function () {
-    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.unused.locales', ['en', 'de']);
     withoutMockingConsoleOutput();
     expect(artisan('translation:unused'))
         ->toBe(1)
@@ -60,7 +60,7 @@ it('errors with multiple locales', function () {
 });
 
 it('errors with multiple locales and no filters', function () {
-    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.unused.locales', ['en', 'de']);
     config()->set('translation-linter.unused.filters', []);
 
     withoutMockingConsoleOutput();
@@ -71,7 +71,7 @@ it('errors with multiple locales and no filters', function () {
 });
 
 it('generates baseline file then successfully ignores baseline keys', function () {
-    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.unused.locales', ['en', 'de']);
     config()->set('translation-linter.unused.filters', [IgnoreKeysFromUnusedBaselineFileFilter::class]);
 
     withoutMockingConsoleOutput();
@@ -92,7 +92,7 @@ it('generates baseline file then successfully ignores baseline keys', function (
 });
 
 it('outputs success message when no unused translations found', function () {
-    config()->set('translation-linter.lang.locales', []);
+    config()->set('translation-linter.unused.locales', []);
     withoutMockingConsoleOutput();
     expect(artisan('translation:unused'))
         ->toBe(0)

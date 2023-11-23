@@ -59,17 +59,6 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Language Locales
-        |--------------------------------------------------------------------------
-        |
-        | The following array contains the "locales" to use when finding all of
-        | your registered language files.
-        |
-        */
-        'locales' => [env('LOCALE_DEFAULT', 'en')],
-
-        /*
-        |--------------------------------------------------------------------------
         | Language File Readers
         |--------------------------------------------------------------------------
         |
@@ -130,6 +119,17 @@ return [
         |
         */
         'filters' => [],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Language Locales
+        |--------------------------------------------------------------------------
+        |
+        | The following array contains the "locales" to use when finding all of
+        | your registered language files.
+        |
+        */
+        'locales' => [env('LOCALE_DEFAULT', 'en')],
     ],
 
     'unused' => [
@@ -181,5 +181,16 @@ return [
             \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
             \Fidum\LaravelTranslationLinter\Filters\IgnoreVendorKeysFilter::class,
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Language Locales
+        |--------------------------------------------------------------------------
+        |
+        | The following array contains the "locales" to use when finding all of
+        | your registered language files.
+        |
+        */
+        'locales' => [env('LOCALE_DEFAULT', 'en')],
     ],
 ];

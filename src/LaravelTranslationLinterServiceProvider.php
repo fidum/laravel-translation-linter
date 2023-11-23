@@ -126,7 +126,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->when(MissingTranslationLinter::class)
             ->needs('$locales')
-            ->giveConfig('translation-linter.lang.locales');
+            ->giveConfig('translation-linter.missing.locales');
 
         $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
 
@@ -154,7 +154,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->when(UnusedTranslationLinter::class)
             ->needs('$locales')
-            ->giveConfig('translation-linter.lang.locales');
+            ->giveConfig('translation-linter.unused.locales');
     }
 
     public function provides()
