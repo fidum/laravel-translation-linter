@@ -27,7 +27,7 @@ class UnusedCommand extends Command
         $results = $linter->execute();
 
         if ($baseline) {
-            $results = $results->whereShouldReport($filters);
+            $results = $results->whereShouldReport($filters)->uniqueForLocale();
 
             $writer->execute($results);
 

@@ -21,4 +21,6 @@ interface ResultObjectCollection extends Arrayable, Enumerable
     public function toCommandTableOutputArray(FieldCollectionContract $fields): array;
 
     public function whereShouldReport(FilterCollectionContract $filters): self;
+
+    public function uniqueForLocale(): self;
 }

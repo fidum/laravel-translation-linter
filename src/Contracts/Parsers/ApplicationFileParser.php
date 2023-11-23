@@ -2,10 +2,10 @@
 
 namespace Fidum\LaravelTranslationLinter\Contracts\Parsers;
 
-use Fidum\LaravelTranslationLinter\Contracts\Collections\ApplicationFileCollection as ApplicationFileCollectionContract;
+use Illuminate\Support\Collection;
 use Symfony\Component\Finder\SplFileInfo;
 
 interface ApplicationFileParser
 {
-    public function execute(SplFileInfo $file): ApplicationFileCollectionContract;
+    public function execute(SplFileInfo $file): Collection;
 }

@@ -6,10 +6,6 @@ use Fidum\LaravelTranslationLinter\Contracts\Collections\ApplicationFileCollecti
 use Fidum\LaravelTranslationLinter\Data\ApplicationFileObject;
 use Illuminate\Support\Collection;
 
-/**
- * @method self __construct(ApplicationFileObject[] $items = null)
- * @method self push(ApplicationFileObject $object)
- */
 class ApplicationFileCollection extends Collection implements ApplicationFileCollectionContract
 {
     public function containsKey(string $key): bool
@@ -22,5 +18,12 @@ class ApplicationFileCollection extends Collection implements ApplicationFileCol
     public function doesntContainKey(string $key): bool
     {
         return ! $this->containsKey($key);
+    }
+
+    public function uniqueForFile(): ApplicationFileCollectionContract
+    {
+        return $this->unique(function (ApplicationFileObject $object) {
+            return $object->namespaceHintedKey.$object->file->getPathname();
+        });
     }
 }
