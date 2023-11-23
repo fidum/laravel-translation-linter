@@ -102,8 +102,6 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->bind(LanguageNamespaceKeyFactoryContract::class, LanguageNamespaceKeyFactory::class);
 
-        $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
-
         $this->app->scoped(MissingBaselineFileReaderContract::class, MissingBaselineFileReader::class);
 
         $this->app->when(MissingBaselineFileReader::class)
@@ -129,6 +127,8 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         $this->app->when(MissingTranslationLinter::class)
             ->needs('$locales')
             ->giveConfig('translation-linter.lang.locales');
+
+        $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
 
         $this->app->scoped(UnusedBaselineFileReaderContract::class, UnusedBaselineFileReader::class);
 
@@ -170,12 +170,12 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             LanguageKeyFactoryContract::class,
             LanguageNamespaceFinderContract::class,
             LanguageNamespaceKeyFactoryContract::class,
-            ResultObjectCollectionContract::class,
             MissingBaselineFileReaderContract::class,
             MissingBaselineFileWriterContract::class,
             MissingFieldCollectionContract::class,
             MissingFilterCollectionContract::class,
             MissingTranslationLinterContract::class,
+            ResultObjectCollectionContract::class,
             UnusedBaselineFileReaderContract::class,
             UnusedBaselineFileWriterContract::class,
             UnusedFieldCollectionContract::class,
