@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 2.0.0 - 2023-11-23
+
+### What's Changed
+
+- Adds command to find missing translations by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/10   
+  - The `translation-linter` config has had major changes please delete it and re publish it using the instructions on the readme.   
+  
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.6...2.0.0
+
 ## 1.0.6 - 2023-11-22
 
 ### What's Changed
