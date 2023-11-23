@@ -1,0 +1,28 @@
+
+   ERROR  21 missing translations found.  
+
++--------+----------------------------------------------+-----------------------------------+
+| Locale | Key                                          | File                              |
++--------+----------------------------------------------+-----------------------------------+
+| en     | example.missing                              | app/Example.php                   |
+| en     | Missing PHP Class                            | app/ExampleJson.php               |
+| en     | Only Missing English PHP Class               | app/ExampleJson.php               |
+| en     | example::folder/example.missing              | app/ExampleMissing.php            |
+| en     | folder/example.missing                       | app/ExampleMissingOther.php       |
+| en     | example::example.missing                     | app/ExampleMissingOther.php       |
+| en     | example.vue.missing                          | resources/js/MissingComponent.vue |
+| en     | folder/example.vue.missing                   | resources/js/MissingComponent.vue |
+| en     | example::example.vue.missing                 | resources/js/MissingComponent.vue |
+| en     | example::folder/example.vue.missing          | resources/js/MissingComponent.vue |
+| en     | Missing Vue Component                        | resources/js/MissingComponent.vue |
+| en     | Missing Vendor Vue Component                 | resources/js/MissingComponent.vue |
+| en     | example.blade.lang.missing                   | resources/views/missing.blade.php |
+| en     | folder/example.blade.lang.missing            | resources/views/missing.blade.php |
+| en     | example::example.blade.lang.missing          | resources/views/missing.blade.php |
+| en     | example::folder/example.blade.lang.missing   | resources/views/missing.blade.php |
+| en     | Missing Blade File                           | resources/views/missing.blade.php |
+| en     | example.blade.choice.missing                 | resources/views/missing.blade.php |
+| en     | folder/example.blade.choice.missing          | resources/views/missing.blade.php |
+| en     | example::example.blade.choice.missing        | resources/views/missing.blade.php |
+| en     | example::folder/example.blade.choice.missing | resources/views/missing.blade.php |
++--------+----------------------------------------------+-----------------------------------+

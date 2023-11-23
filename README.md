@@ -28,6 +28,38 @@ php artisan vendor:publish --tag="translation-linter-config"
 
 You should read through the config, which serves as additional documentation and make changes as needed.
 
+## Missing Command
+This reads through all your code and finds all your language function usage. 
+Then attempts to find matches in your language files and will output any 
+keys in your code that do not exist as a language key.
+
+```sh
+$ php artisan translation:missing
+
+   ERROR  3 missing translations found.  
+
++--------+--------------------------------+---------------------+
+| Locale | Key                            | File                |
++--------+--------------------------------+---------------------+
+| en     | Missing PHP Class              | app/ExampleJson.php |
+| en     | Only Missing English PHP Class | app/ExampleJson.php |
+| de     | Missing PHP Class              | app/ExampleJson.php |
++--------+--------------------------------+---------------------+
+```
+
+You can generate a baseline file which will be used to ignore specific keys with the 
+`--generate-baseline` or `-b` command options:
+
+```sh
+$ php artisan translation:missing --generate-baseline 
+
+   INFO  Baseline file written with 49 translation keys.  
+
+$ php artisan translation:missing
+
+   INFO  No missing translations found!  
+```
+
 ## Unused Command
 This reads through all your code and finds all your language function usage. 
 Then attempts to find matches in your language files and will output any 
@@ -64,20 +96,6 @@ $ php artisan translation:unused
 
    INFO  No unused translations found!  
 ```
-
-## Roadmap
-- [x] Supports JSON and PHP translation files
-    - You can enable / disable file types in the config
-    - You can add your own custom file readers
-- [x] Supports multiple locales
-- [x] Supports parsing many code types
-    - Default: php, js and vue
-    - You can add more file extensions in the config
-- [x] [Unused Command](#unused-command)
-- [ ] Missing Command - _coming soon_
-- [ ] Orphaned Command - _coming soon_
-- [ ] Lint Command - _coming soon_
-    - This would run all of the other commands in a single command.
 
 ## Testing
 

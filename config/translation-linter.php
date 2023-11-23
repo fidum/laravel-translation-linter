@@ -88,6 +88,50 @@ return [
         ],
     ],
 
+    'missing' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Baseline File
+        |--------------------------------------------------------------------------
+        |
+        | This is the location of the baseline file that is used to ignore specific
+        | translation keys. You can generate this file by using the `--generate-baseline`
+        | option when running the command. You should commit this file.
+        |
+        */
+        'baseline' => lang_path('.lint/missing.json'),
+
+        /*
+        |--------------------------------------------------------------------------
+        | Output Fields
+        |--------------------------------------------------------------------------
+        |
+        | The following array lists the "fields" that are displayed by the command
+        | when missing translations are found. Set any of these to `false` to hide
+        | them from the output or change all to `false` to not show anything.
+        |
+        */
+        'fields' => [
+            'locale' => true,
+            'key' => true,
+            'file' => true,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Missing Language Filters
+        |--------------------------------------------------------------------------
+        |
+        | The following array lists the "filters" that will be used to filter out
+        | erroneously detected missing translations.
+        |
+        | All filters must implement the filter interface or they will be skipped:
+        | \Fidum\LaravelTranslationLinter\Contracts\Filter
+        |
+        */
+        'filters' => [],
+    ],
+
     'unused' => [
         /*
         |--------------------------------------------------------------------------

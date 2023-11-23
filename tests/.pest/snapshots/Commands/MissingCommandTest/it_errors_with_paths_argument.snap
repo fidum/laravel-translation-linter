@@ -1,0 +1,14 @@
+
+   ERROR  7 missing translations found.  
+
++--------+-------------------------------------+-----------------------------------+
+| Locale | Key                                 | File                              |
++--------+-------------------------------------+-----------------------------------+
+| en     | example.missing                     | app/Example.php                   |
+| en     | example.vue.missing                 | resources/js/MissingComponent.vue |
+| en     | folder/example.vue.missing          | resources/js/MissingComponent.vue |
+| en     | example::example.vue.missing        | resources/js/MissingComponent.vue |
+| en     | example::folder/example.vue.missing | resources/js/MissingComponent.vue |
+| en     | Missing Vue Component               | resources/js/MissingComponent.vue |
+| en     | Missing Vendor Vue Component        | resources/js/MissingComponent.vue |
++--------+-------------------------------------+-----------------------------------+

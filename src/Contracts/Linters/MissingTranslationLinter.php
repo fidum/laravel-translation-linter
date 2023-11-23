@@ -2,4 +2,4 @@
 
 namespace Fidum\LaravelTranslationLinter\Contracts\Linters;
 
-interface UnusedTranslationLinter extends TranslationLinter {}
+interface MissingTranslationLinter extends TranslationLinter {}

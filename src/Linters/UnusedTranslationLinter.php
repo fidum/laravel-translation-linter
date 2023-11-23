@@ -62,7 +62,7 @@ readonly class UnusedTranslationLinter implements UnusedTranslationLinterContrac
                                 key: $groupedKey
                             );
 
-                            if ($used->doesntContain($namespacedKey)) {
+                            if ($used->doesntContainKey($namespacedKey)) {
                                 $this->results->push(new ResultObject(
                                     file: $file,
                                     key: $groupedKey,
