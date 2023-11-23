@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 2.0.2 - 2023-11-23
+
+### What's Changed
+
+- Fix performance issue and baseline key count by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/12
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/2.0.1...2.0.2
+
 ## 2.0.1 - 2023-11-23
 
 ### What's Changed
