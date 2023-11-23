@@ -7,6 +7,7 @@ use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Contracts\Parsers\ApplicationFileParser;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
 use Fidum\LaravelTranslationLinter\Data\ApplicationFileObject;
+use Illuminate\Support\Str;
 
 class ApplicationFileReader implements ApplicationFileReaderContract
 {
@@ -23,11 +24,16 @@ class ApplicationFileReader implements ApplicationFileReaderContract
 
         // Get all translatable strings from files
         foreach ($files as $file) {
-            $this->collection->push(...$this->parser->execute($file));
+            foreach ($this->parser->execute($file) as $namespaceHintedKey) {
+                $this->collection->push(new ApplicationFileObject(
+                    file: $file,
+                    key: Str::after($namespaceHintedKey, '::') ?: null,
+                    namespaceHint: Str::before($namespaceHintedKey, '::') ?: null,
+                    namespaceHintedKey: $namespaceHintedKey,
+                ));
+            }
         }
 
-        return $this->collection->unique(function (ApplicationFileObject $object) {
-            return $object->namespaceHintedKey.$object->file->getPathname();
-        });
+        return $this->collection->uniqueForFile();
     }
 }

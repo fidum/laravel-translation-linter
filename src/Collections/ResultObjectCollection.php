@@ -20,7 +20,7 @@ class ResultObjectCollection extends Collection implements ResultObjectCollectio
     {
         return $this
             ->groupBy('locale')
-            ->map(fn (ResultObjectCollection $collection) => $collection->pluck('namespaceHintedKey')->values())
+            ->map(fn (ResultObjectCollection $collection) => $collection->pluck('namespaceHintedKey')->unique()->values())
             ->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 
@@ -34,5 +34,10 @@ class ResultObjectCollection extends Collection implements ResultObjectCollectio
     public function whereShouldReport(FilterCollectionContract $filters): ResultObjectCollectionContract
     {
         return $this->filter($filters->shouldReport(...));
+    }
+
+    public function uniqueForLocale(): ResultObjectCollectionContract
+    {
+        return $this->unique(fn (ResultObject $object) => $object->locale.$object->namespaceHintedKey);
     }
 }

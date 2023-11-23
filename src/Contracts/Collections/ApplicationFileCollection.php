@@ -15,4 +15,6 @@ interface ApplicationFileCollection extends Arrayable, Enumerable
     public function containsKey(string $key): bool;
 
     public function doesntContainKey(string $key): bool;
+
+    public function uniqueForFile(): self;
 }
