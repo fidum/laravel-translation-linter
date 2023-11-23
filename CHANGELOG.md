@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 2.0.1 - 2023-11-23
+
+### What's Changed
+
+- Separate locales config for each command by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/11   
+  - Config `transliation-linter` field `lang.locales` has been removed.   
+  - Replace with separate `missing.locales` and `unused.locales`.   
+  
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/2.0.0...2.0.1
+
 ## 2.0.0 - 2023-11-23
 
 ### What's Changed
