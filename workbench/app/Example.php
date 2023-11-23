@@ -7,7 +7,7 @@ use Illuminate\Validation\Validator;
 
 class Example
 {
-    public function handle(Validator $validator)
+    public function unused()
     {
         $example = __('example.used');
 
@@ -19,5 +19,10 @@ class Example
         collect()->when(fn () => Lang::get(
             'example::folder/example.used'
         ));
+    }
+
+    public function missing()
+    {
+        $example = __('example.missing');
     }
 }

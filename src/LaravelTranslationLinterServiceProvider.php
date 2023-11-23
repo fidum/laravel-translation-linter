@@ -2,10 +2,17 @@
 
 namespace Fidum\LaravelTranslationLinter;
 
+use Fidum\LaravelTranslationLinter\Collections\ApplicationFileCollection;
+use Fidum\LaravelTranslationLinter\Collections\MissingFieldCollection;
+use Fidum\LaravelTranslationLinter\Collections\MissingFilterCollection;
 use Fidum\LaravelTranslationLinter\Collections\ResultObjectCollection;
 use Fidum\LaravelTranslationLinter\Collections\UnusedFieldCollection;
 use Fidum\LaravelTranslationLinter\Collections\UnusedFilterCollection;
+use Fidum\LaravelTranslationLinter\Commands\MissingCommand;
 use Fidum\LaravelTranslationLinter\Commands\UnusedCommand;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\ApplicationFileCollection as ApplicationFileCollectionContract;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\MissingFieldCollection as MissingFieldCollectionContract;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\MissingFilterCollection as MissingFilterCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\ResultObjectCollection as ResultObjectCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFieldCollection as UnusedFieldCollectionContract;
 use Fidum\LaravelTranslationLinter\Contracts\Collections\UnusedFilterCollection as UnusedFilterCollectionContract;
@@ -14,23 +21,29 @@ use Fidum\LaravelTranslationLinter\Contracts\Factories\LanguageNamespaceKeyFacto
 use Fidum\LaravelTranslationLinter\Contracts\Finders\ApplicationFileFinder as ApplicationFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageFileFinder as LanguageFileFinderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Finders\LanguageNamespaceFinder as LanguageNamespaceFinderContract;
+use Fidum\LaravelTranslationLinter\Contracts\Linters\MissingTranslationLinter as MissingTranslationLinterContract;
 use Fidum\LaravelTranslationLinter\Contracts\Linters\UnusedTranslationLinter as UnusedTranslationLinterContract;
 use Fidum\LaravelTranslationLinter\Contracts\Parsers\ApplicationFileParser as ApplicationFileParserContract;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\ApplicationFileReader as ApplicationFileReaderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\LanguageFileReader as LanguageFileReaderContract;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\MissingBaselineFileReader as MissingBaselineFileReaderContract;
 use Fidum\LaravelTranslationLinter\Contracts\Readers\UnusedBaselineFileReader as UnusedBaselineFileReaderContract;
+use Fidum\LaravelTranslationLinter\Contracts\Writers\MissingBaselineFileWriter as MissingBaselineFileWriterContract;
 use Fidum\LaravelTranslationLinter\Contracts\Writers\UnusedBaselineFileWriter as UnusedBaselineFileWriterContract;
 use Fidum\LaravelTranslationLinter\Factories\LanguageKeyFactory;
 use Fidum\LaravelTranslationLinter\Factories\LanguageNamespaceKeyFactory;
 use Fidum\LaravelTranslationLinter\Finders\ApplicationFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageFileFinder;
 use Fidum\LaravelTranslationLinter\Finders\LanguageNamespaceFinder;
+use Fidum\LaravelTranslationLinter\Linters\MissingTranslationLinter;
 use Fidum\LaravelTranslationLinter\Linters\UnusedTranslationLinter;
 use Fidum\LaravelTranslationLinter\Managers\LanguageFileReaderManager;
 use Fidum\LaravelTranslationLinter\Parsers\ApplicationFileParser;
 use Fidum\LaravelTranslationLinter\Readers\ApplicationFileReader;
 use Fidum\LaravelTranslationLinter\Readers\LanguageFileReader;
+use Fidum\LaravelTranslationLinter\Readers\MissingBaselineFileReader;
 use Fidum\LaravelTranslationLinter\Readers\UnusedBaselineFileReader;
+use Fidum\LaravelTranslationLinter\Writers\MissingBaselineFileWriter;
 use Fidum\LaravelTranslationLinter\Writers\UnusedBaselineFileWriter;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Foundation\Application;
@@ -44,11 +57,14 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
         $package
             ->name('laravel-translation-linter')
             ->hasConfigFile()
+            ->hasCommand(MissingCommand::class)
             ->hasCommand(UnusedCommand::class);
     }
 
     public function registeringPackage()
     {
+        $this->app->bind(ApplicationFileCollectionContract::class, ApplicationFileCollection::class);
+
         $this->app->bind(ApplicationFileFinderContract::class, ApplicationFileFinder::class);
 
         $this->app->when(ApplicationFileFinder::class)
@@ -86,6 +102,32 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
 
         $this->app->bind(LanguageNamespaceKeyFactoryContract::class, LanguageNamespaceKeyFactory::class);
 
+        $this->app->scoped(MissingBaselineFileReaderContract::class, MissingBaselineFileReader::class);
+
+        $this->app->when(MissingBaselineFileReader::class)
+            ->needs('$file')
+            ->giveConfig('translation-linter.missing.baseline');
+
+        $this->app->bind(MissingBaselineFileWriterContract::class, MissingBaselineFileWriter::class);
+
+        $this->app->when(MissingBaselineFileWriter::class)
+            ->needs('$file')
+            ->giveConfig('translation-linter.missing.baseline');
+
+        $this->app->bind(MissingFieldCollectionContract::class, function (Application $app) {
+            return MissingFieldCollection::wrap($app->make('config')->get('translation-linter.missing.fields'));
+        });
+
+        $this->app->bind(MissingFilterCollectionContract::class, function (Application $app) {
+            return MissingFilterCollection::wrap($app->make('config')->get('translation-linter.missing.filters'));
+        });
+
+        $this->app->bind(MissingTranslationLinterContract::class, MissingTranslationLinter::class);
+
+        $this->app->when(MissingTranslationLinter::class)
+            ->needs('$locales')
+            ->giveConfig('translation-linter.lang.locales');
+
         $this->app->bind(ResultObjectCollectionContract::class, ResultObjectCollection::class);
 
         $this->app->scoped(UnusedBaselineFileReaderContract::class, UnusedBaselineFileReader::class);
@@ -118,6 +160,7 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
     public function provides()
     {
         return [
+            ApplicationFileCollectionContract::class,
             ApplicationFileFinderContract::class,
             ApplicationFileParserContract::class,
             ApplicationFileReaderContract::class,
@@ -127,6 +170,11 @@ class LaravelTranslationLinterServiceProvider extends PackageServiceProvider imp
             LanguageKeyFactoryContract::class,
             LanguageNamespaceFinderContract::class,
             LanguageNamespaceKeyFactoryContract::class,
+            MissingBaselineFileReaderContract::class,
+            MissingBaselineFileWriterContract::class,
+            MissingFieldCollectionContract::class,
+            MissingFilterCollectionContract::class,
+            MissingTranslationLinterContract::class,
             ResultObjectCollectionContract::class,
             UnusedBaselineFileReaderContract::class,
             UnusedBaselineFileWriterContract::class,

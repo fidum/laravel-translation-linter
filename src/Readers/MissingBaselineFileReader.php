@@ -2,11 +2,11 @@
 
 namespace Fidum\LaravelTranslationLinter\Readers;
 
-use Fidum\LaravelTranslationLinter\Contracts\Readers\UnusedBaselineFileReader as UnusedBaselineFileReaderContract;
+use Fidum\LaravelTranslationLinter\Contracts\Readers\MissingBaselineFileReader as MissingBaselineFileReaderContract;
 use Fidum\LaravelTranslationLinter\Readers\Concerns\ReadsBaselineFile;
 use Illuminate\Filesystem\Filesystem;
 
-class UnusedBaselineFileReader implements UnusedBaselineFileReaderContract
+class MissingBaselineFileReader implements MissingBaselineFileReaderContract
 {
     use ReadsBaselineFile;
 

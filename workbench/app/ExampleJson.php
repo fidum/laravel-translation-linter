@@ -10,5 +10,8 @@ class ExampleJson
     {
         __('Used PHP Class');
         __("Used Vendor PHP Class");
+
+        __('Missing PHP Class');
+        __('Only Missing English PHP Class');
     }
 }

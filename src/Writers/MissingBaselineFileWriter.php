@@ -2,11 +2,11 @@
 
 namespace Fidum\LaravelTranslationLinter\Writers;
 
-use Fidum\LaravelTranslationLinter\Contracts\Writers\UnusedBaselineFileWriter as UnusedBaselineFileWriterContract;
+use Fidum\LaravelTranslationLinter\Contracts\Writers\MissingBaselineFileWriter as MissingBaselineFileWriterContract;
 use Fidum\LaravelTranslationLinter\Writers\Concerns\WritesBaselineFile;
 use Illuminate\Filesystem\Filesystem;
 
-class UnusedBaselineFileWriter implements UnusedBaselineFileWriterContract
+class MissingBaselineFileWriter implements MissingBaselineFileWriterContract
 {
     use WritesBaselineFile;
 

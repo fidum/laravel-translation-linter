@@ -1,0 +1,10 @@
+
+   ERROR  3 missing translations found.  
+
++--------+--------------------------------+---------------------+
+| Locale | Key                            | File                |
++--------+--------------------------------+---------------------+
+| en     | Missing PHP Class              | app/ExampleJson.php |
+| en     | Only Missing English PHP Class | app/ExampleJson.php |
+| de     | Missing PHP Class              | app/ExampleJson.php |
++--------+--------------------------------+---------------------+

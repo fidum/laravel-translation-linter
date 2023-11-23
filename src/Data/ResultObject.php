@@ -13,7 +13,7 @@ readonly class ResultObject implements Arrayable
         public string $locale,
         public ?string $namespaceHint,
         public string $namespaceHintedKey,
-        public ?string $value,
+        public ?string $value = null,
     ) {}
 
     public function toArray()
@@ -22,6 +22,10 @@ readonly class ResultObject implements Arrayable
             'locale' => $this->locale,
             'key' => $this->namespaceHintedKey,
             'value' => $this->value,
+            'file' => str($this->file->getPathname())
+                ->replace(base_path(), '')
+                ->ltrim(DIRECTORY_SEPARATOR)
+                ->toString(),
         ];
     }
 }

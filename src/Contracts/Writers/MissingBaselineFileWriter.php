@@ -2,4 +2,4 @@
 
 namespace Fidum\LaravelTranslationLinter\Contracts\Writers;
 
-interface UnusedBaselineFileWriter extends BaselineFileWriter {}
+interface MissingBaselineFileWriter extends BaselineFileWriter {}

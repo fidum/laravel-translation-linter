@@ -2,9 +2,9 @@
 
 namespace Fidum\LaravelTranslationLinter\Contracts\Readers;
 
-use Illuminate\Support\Collection;
+use Fidum\LaravelTranslationLinter\Contracts\Collections\ApplicationFileCollection as ApplicationFileCollectionContract;
 
 interface ApplicationFileReader
 {
-    public function execute(): Collection;
+    public function execute(): ApplicationFileCollectionContract;
 }

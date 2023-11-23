@@ -11,5 +11,6 @@ class WorkbenchServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadTranslationsFrom(workbench_path('/vendor/example/lang'), 'example');
+        $this->loadJsonTranslationsFrom(workbench_path('/vendor/example/lang'));
     }
 }
