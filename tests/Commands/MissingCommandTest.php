@@ -53,7 +53,7 @@ it('errors with default no fields', function () {
 });
 
 it('errors with multiple locales', function () {
-    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.missing.locales', ['en', 'de']);
     $firstFile = workbench_path('app/ExampleJson.php');
 
     withoutMockingConsoleOutput();
@@ -64,7 +64,7 @@ it('errors with multiple locales', function () {
 });
 
 it('generates baseline file then successfully ignores baseline keys', function () {
-    config()->set('translation-linter.lang.locales', ['en', 'de']);
+    config()->set('translation-linter.missing.locales', ['en', 'de']);
 
     withoutMockingConsoleOutput();
     expect(artisan('translation:missing --generate-baseline'))
@@ -84,7 +84,7 @@ it('generates baseline file then successfully ignores baseline keys', function (
 });
 
 it('outputs success message when no missing translations found', function () {
-    config()->set('translation-linter.lang.locales', []);
+    config()->set('translation-linter.missing.locales', []);
     withoutMockingConsoleOutput();
     expect(artisan('translation:missing'))
         ->toBe(0)
