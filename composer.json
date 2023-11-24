@@ -1,6 +1,6 @@
 {
     "name": "fidum/laravel-translation-linter",
-    "description": "Checks your code for unused laravel language keys",
+    "description": "Commands to help you keep your laravel translations organized.",
     "keywords": [
         "fidum",
         "laravel",
