@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 2.0.3 - 2024-03-05
+
+### What's Changed
+
+* Run tests on PHP 8.3 by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/13
+* Bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot in https://github.com/fidum/laravel-translation-linter/pull/14
+* Bump ramsey/composer-install from 2 to 3 by @dependabot in https://github.com/fidum/laravel-translation-linter/pull/15
+* Support Laravel 11 by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/16
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/2.0.2...2.0.3
+
 ## 2.0.2 - 2023-11-23
 
 ### What's Changed
@@ -14,9 +25,9 @@ All notable changes to `laravel-translation-linter` will be documented in this f
 
 ### What's Changed
 
-- Separate locales config for each command by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/11   
-  - Config `transliation-linter` field `lang.locales` has been removed.   
-  - Replace with separate `missing.locales` and `unused.locales`.   
+- Separate locales config for each command by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/11
+  - Config `transliation-linter` field `lang.locales` has been removed.
+  - Replace with separate `missing.locales` and `unused.locales`.
   
 
 **Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/2.0.0...2.0.1
@@ -25,8 +36,8 @@ All notable changes to `laravel-translation-linter` will be documented in this f
 
 ### What's Changed
 
-- Adds command to find missing translations by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/10   
-  - The `translation-linter` config has had major changes please delete it and re publish it using the instructions on the readme.   
+- Adds command to find missing translations by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/10
+  - The `translation-linter` config has had major changes please delete it and re publish it using the instructions on the readme.
   
 
 **Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.6...2.0.0
@@ -35,8 +46,8 @@ All notable changes to `laravel-translation-linter` will be documented in this f
 
 ### What's Changed
 
-- Always use unused namespace key in output by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/9   
-  - The config value `translation-linter.unused.fields.namespace` has been removed.   
+- Always use unused namespace key in output by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/9
+  - The config value `translation-linter.unused.fields.namespace` has been removed.
   
 
 **Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/1.0.5...1.0.6
