@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 3.0.0 - 2025-02-24
+
+### What's Changed
+
+* Run tests on PHP 8.4 by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/22
+* Adds Laravel 12.x Support by @dmason30 in https://github.com/fidum/laravel-translation-linter/pull/24
+* Drops Laravel 10.x Support
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/2.0.3...3.0.0
+
 ## 2.0.3 - 2024-03-05
 
 ### What's Changed
