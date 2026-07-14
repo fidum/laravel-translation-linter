@@ -20,7 +20,7 @@ readonly class ApplicationFileParser implements ApplicationFileParserContract
     public function execute(SplFileInfo $file): Collection
     {
         $data = $file->getContents();
-        $collection = new Collection();
+        $collection = new Collection;
 
         if (! preg_match_all($this->pattern, $data, $matches, PREG_OFFSET_CAPTURE)) {
             // If pattern not found return

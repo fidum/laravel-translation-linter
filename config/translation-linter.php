@@ -1,5 +1,11 @@
 <?php
 
+use Fidum\LaravelTranslationLinter\Filters\IgnoreDefaultLanguageFilesFilter;
+use Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter;
+use Fidum\LaravelTranslationLinter\Filters\IgnoreVendorKeysFilter;
+use Fidum\LaravelTranslationLinter\Readers\JsonFileReader;
+use Fidum\LaravelTranslationLinter\Readers\PhpFileReader;
+
 return [
     'application' => [
         /*
@@ -72,8 +78,8 @@ return [
         |
         */
         'readers' => [
-            'json' => \Fidum\LaravelTranslationLinter\Readers\JsonFileReader::class,
-            'php' => \Fidum\LaravelTranslationLinter\Readers\PhpFileReader::class,
+            'json' => JsonFileReader::class,
+            'php' => PhpFileReader::class,
         ],
     ],
 
@@ -177,9 +183,9 @@ return [
         |
         */
         'filters' => [
-            \Fidum\LaravelTranslationLinter\Filters\IgnoreDefaultLanguageFilesFilter::class,
-            \Fidum\LaravelTranslationLinter\Filters\IgnoreNamespacedKeysFilter::class,
-            \Fidum\LaravelTranslationLinter\Filters\IgnoreVendorKeysFilter::class,
+            IgnoreDefaultLanguageFilesFilter::class,
+            IgnoreNamespacedKeysFilter::class,
+            IgnoreVendorKeysFilter::class,
         ],
 
         /*
