@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-translation-linter` will be documented in this file.
 
+## 3.0.1 - 2026-07-14
+
+### What's Changed
+
+* chore(deps): support laravel 13 by @hendrikheil in https://github.com/fidum/laravel-translation-linter/pull/34
+
+### New Contributors
+
+* @hendrikheil made their first contribution in https://github.com/fidum/laravel-translation-linter/pull/34
+
+**Full Changelog**: https://github.com/fidum/laravel-translation-linter/compare/3.0.0...3.0.1
+
 ## 3.0.0 - 2025-02-24
 
 ### What's Changed
