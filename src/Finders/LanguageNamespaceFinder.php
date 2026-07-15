@@ -12,7 +12,7 @@ readonly class LanguageNamespaceFinder implements LanguageNamespaceFinderContrac
 
     public function execute(): Collection
     {
-        $namespacesCollection = new Collection();
+        $namespacesCollection = new Collection;
 
         // Get Translator namespaces
         $loader = $this->translator->getLoader();

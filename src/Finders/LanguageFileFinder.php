@@ -37,6 +37,6 @@ readonly class LanguageFileFinder implements LanguageFileFinderContract
             });
         }
 
-        return new Collection();
+        return new Collection;
     }
 }

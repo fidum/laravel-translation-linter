@@ -16,7 +16,7 @@ readonly class ApplicationFileFinder implements ApplicationFileFinderContract
 
     public function execute(): Collection
     {
-        $files = new Collection();
+        $files = new Collection;
 
         foreach ($this->directories as $directory) {
             $files = $files->merge($this->filesystem->allFiles($directory));
